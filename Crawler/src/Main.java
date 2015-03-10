@@ -25,7 +25,7 @@ public class Main {
 			
 		} else{
 			// Store the URL to Database to avoid parsing again
-			sql = "INSERT INTO `School`. `Record` " + "(`URL`) VALUES " + "(?);";
+			sql = "INSERT INTO `db `. `Record` " + "(`URL`) VALUES " + "(?);";
 			PreparedStatement stmt = db.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, URL);
 			stmt.execute();

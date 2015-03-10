@@ -13,13 +13,19 @@ public class DB {
 		// connection to database
 		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jbdc:mysql://localhost:3306/Crawler";
-			conn = DriverManager.getConnection(url, "Crawler", "test123");
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			String url = "jdbc:mysql://127.0.0.1:3306/db";
+			conn = DriverManager.getConnection(url, "root", "");
 			System.out.println("conn built");
 		} catch (SQLException e){
 			e.printStackTrace();
 		} catch (ClassNotFoundException e){
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.yattasolutions.uml.diagrams.classifier:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.yattasolutions.uml.diagrams.classifier="http://ns.yatta-solutions.com/umllab/diagrams/classifier/1.1.0" xmi:id="_MHf_cMZjEeSoZ4Yo5vne9Q">
+  <modelElement href="CRAWLER.uml#_Ly7doMZjEeSoZ4Yo5vne9Q"/>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_PNTSwMZjEeSoZ4Yo5vne9Q" source="_PNTSycZjEeSoZ4Yo5vne9Q">
+    <modelElement href="CRAWLER.uml#_O6iHwMZjEeSoZ4Yo5vne9Q"/>
+    <stereotypes xmi:id="_PNTSwcZjEeSoZ4Yo5vne9Q" name="Reference">
+      <modelElement href="CRAWLER.uml#_O6iHwsZjEeSoZ4Yo5vne9Q"/>
+    </stereotypes>
+    <nameVisual xmi:id="_PNTSwsZjEeSoZ4Yo5vne9Q" text=""/>
+    <sourceRole xmi:id="_PNTSw8ZjEeSoZ4Yo5vne9Q" aggregationKind="NONE" name="">
+      <modelElement href="CRAWLER.uml#_O6iHwcZjEeSoZ4Yo5vne9Q"/>
+      <visibility xmi:id="_PNTSxMZjEeSoZ4Yo5vne9Q" label="+"/>
+      <cardinality xmi:id="_PNTSxcZjEeSoZ4Yo5vne9Q" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_PNTSxsZjEeSoZ4Yo5vne9Q" aggregationKind="NONE" name="conn" navigable="true">
+      <modelElement href="CRAWLER.uml#_O6Fb1MZjEeSoZ4Yo5vne9Q"/>
+      <visibility xmi:id="_PNTSx8ZjEeSoZ4Yo5vne9Q" label="+"/>
+      <cardinality xmi:id="_PNTSyMZjEeSoZ4Yo5vne9Q" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_PQSVVMZjEeSoZ4Yo5vne9Q" sourceAnchor="99.0,0.0" targetAnchor="218.0,68.0" target="_PNTSycZjEeSoZ4Yo5vne9Q" source="_PQbfRMZjEeSoZ4Yo5vne9Q">
+    <modelElement href="CRAWLER.uml#_O6iHw8ZjEeSoZ4Yo5vne9Q"/>
+    <bendpoints xmi:id="_PakSsMZjEeSoZ4Yo5vne9Q" sourceY="-124" targetX="167"/>
+    <stereotypes xmi:id="_PQSVWMZjEeSoZ4Yo5vne9Q" name="Reference">
+      <modelElement href="CRAWLER.uml#_O6iHxcZjEeSoZ4Yo5vne9Q"/>
+    </stereotypes>
+    <nameVisual xmi:id="_PQSVVcZjEeSoZ4Yo5vne9Q" text="">
+      <visualProperties xmi:id="_PauDsMZjEeSoZ4Yo5vne9Q" position="-13.394467974077884,53.72271013768665"/>
+    </nameVisual>
+    <sourceRole xmi:id="_PQSVVsZjEeSoZ4Yo5vne9Q" aggregationKind="NONE" name="">
+      <modelElement href="CRAWLER.uml#_O6iHxMZjEeSoZ4Yo5vne9Q"/>
+      <visualProperties xmi:id="_PakSscZjEeSoZ4Yo5vne9Q" position="1.9887493069759898,-66.11724013035857"/>
+      <visibility xmi:id="_PQbfQMZjEeSoZ4Yo5vne9Q" label="+"/>
+      <cardinality xmi:id="_PQSVWcZjEeSoZ4Yo5vne9Q" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_PQSVV8ZjEeSoZ4Yo5vne9Q" aggregationKind="NONE" name="db" navigable="true">
+      <modelElement href="CRAWLER.uml#_O6OlwMZjEeSoZ4Yo5vne9Q"/>
+      <visualProperties xmi:id="_PauDscZjEeSoZ4Yo5vne9Q" position="161.96056141449333,16.700248952472748"/>
+      <visibility xmi:id="_PQbfQsZjEeSoZ4Yo5vne9Q" label="+"/>
+      <cardinality xmi:id="_PQbfQcZjEeSoZ4Yo5vne9Q" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_PNTSycZjEeSoZ4Yo5vne9Q" name="DB" associationsIn="_PQSVVMZjEeSoZ4Yo5vne9Q" associationsOut="_PNTSwMZjEeSoZ4Yo5vne9Q">
+    <modelElement href="CRAWLER.uml#_OxSsMMZjEeSoZ4Yo5vne9Q"/>
+    <visualProperties xmi:id="_PNTSysZjEeSoZ4Yo5vne9Q" position="30.0,30.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_PNTSy8ZjEeSoZ4Yo5vne9Q" label="+"/>
+    <attributes xmi:id="_PNTSzMZjEeSoZ4Yo5vne9Q" defaultValue="null" name="conn">
+      <modelElement href="CRAWLER.uml#_O6Fb1MZjEeSoZ4Yo5vne9Q"/>
+      <stereotypes xmi:id="_PNTSzcZjEeSoZ4Yo5vne9Q" name="LegacyStyledElement">
+        <modelElement href="CRAWLER.uml#_O6Fb1sZjEeSoZ4Yo5vne9Q"/>
+      </stereotypes>
+      <visibility xmi:id="_PNTSzsZjEeSoZ4Yo5vne9Q" label="+"/>
+      <cardinality xmi:id="_PNTSz8ZjEeSoZ4Yo5vne9Q" label="1" max="1" min="1"/>
+      <type xmi:id="_PNTS0MZjEeSoZ4Yo5vne9Q" name="Connection">
+        <modelElement href="CRAWLER.uml#_O5e-4MZjEeSoZ4Yo5vne9Q"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_PNTS0cZjEeSoZ4Yo5vne9Q" name="DB">
+      <modelElement href="CRAWLER.uml#_Oxb2KcZjEeSoZ4Yo5vne9Q"/>
+      <keywords xmi:id="_PNTS0sZjEeSoZ4Yo5vne9Q" keyword="create"/>
+      <visibility xmi:id="_PNTS08ZjEeSoZ4Yo5vne9Q" label="+"/>
+      <outParameters xmi:id="_PNTS1MZjEeSoZ4Yo5vne9Q">
+        <modelElement href="CRAWLER.uml#_OxlnIsZjEeSoZ4Yo5vne9Q"/>
+        <type xmi:id="_PNTS1cZjEeSoZ4Yo5vne9Q" name="DB">
+          <modelElement href="CRAWLER.uml#_OxSsMMZjEeSoZ4Yo5vne9Q"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_PNTS1sZjEeSoZ4Yo5vne9Q" name="runSql">
+      <modelElement href="CRAWLER.uml#_OxlnI8ZjEeSoZ4Yo5vne9Q"/>
+      <visibility xmi:id="_PNTS18ZjEeSoZ4Yo5vne9Q" label="+"/>
+      <outParameters xmi:id="_PNTS2MZjEeSoZ4Yo5vne9Q">
+        <modelElement href="CRAWLER.uml#_O6Fb0MZjEeSoZ4Yo5vne9Q"/>
+        <type xmi:id="_PNTS2cZjEeSoZ4Yo5vne9Q" name="ResultSet">
+          <modelElement href="CRAWLER.uml#_O5ov4cZjEeSoZ4Yo5vne9Q"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_PNTS2sZjEeSoZ4Yo5vne9Q" name="sql">
+        <modelElement href="CRAWLER.uml#_OxlnJMZjEeSoZ4Yo5vne9Q"/>
+        <type xmi:id="_PNTS28ZjEeSoZ4Yo5vne9Q" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_PNTS3MZjEeSoZ4Yo5vne9Q" name="runSql2">
+      <modelElement href="CRAWLER.uml#_OxlnJcZjEeSoZ4Yo5vne9Q"/>
+      <visibility xmi:id="_PNTS3cZjEeSoZ4Yo5vne9Q" label="+"/>
+      <outParameters xmi:id="_PNTS3sZjEeSoZ4Yo5vne9Q">
+        <modelElement href="CRAWLER.uml#_OxlnJ8ZjEeSoZ4Yo5vne9Q"/>
+        <type xmi:id="_PNTS38ZjEeSoZ4Yo5vne9Q" name="boolean">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_PNTS4MZjEeSoZ4Yo5vne9Q" name="sql">
+        <modelElement href="CRAWLER.uml#_OxlnJsZjEeSoZ4Yo5vne9Q"/>
+        <type xmi:id="_PNTS4cZjEeSoZ4Yo5vne9Q" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_PNTS4sZjEeSoZ4Yo5vne9Q" name="finalize">
+      <modelElement href="CRAWLER.uml#_OxvYIMZjEeSoZ4Yo5vne9Q"/>
+      <stereotypes xmi:id="_PNTS48ZjEeSoZ4Yo5vne9Q" name="LegacyStyledElement">
+        <modelElement href="CRAWLER.uml#_OxvYIcZjEeSoZ4Yo5vne9Q"/>
+      </stereotypes>
+      <stereotypes xmi:id="_PNTS5MZjEeSoZ4Yo5vne9Q" name="Annotations">
+        <modelElement href="CRAWLER.uml#_OxvYIsZjEeSoZ4Yo5vne9Q"/>
+      </stereotypes>
+      <visibility xmi:id="_PNTS5cZjEeSoZ4Yo5vne9Q" label="#"/>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_PQIkUMZjEeSoZ4Yo5vne9Q" name="SQLException">
+    <modelElement href="CRAWLER.uml#_O5ov48ZjEeSoZ4Yo5vne9Q"/>
+    <visualProperties xmi:id="_PQIkUcZjEeSoZ4Yo5vne9Q" position="579.0,239.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_PQIkUsZjEeSoZ4Yo5vne9Q" name="Reference">
+      <modelElement href="CRAWLER.uml#_O5ov5MZjEeSoZ4Yo5vne9Q"/>
+    </stereotypes>
+    <visibility xmi:id="_PQIkU8ZjEeSoZ4Yo5vne9Q" label="+"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_PQSVUMZjEeSoZ4Yo5vne9Q" name="Throwable">
+    <modelElement href="CRAWLER.uml#_O6Fb0sZjEeSoZ4Yo5vne9Q"/>
+    <visualProperties xmi:id="_PQSVUcZjEeSoZ4Yo5vne9Q" position="588.0,349.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_PQSVUsZjEeSoZ4Yo5vne9Q" name="Reference">
+      <modelElement href="CRAWLER.uml#_O6Fb08ZjEeSoZ4Yo5vne9Q"/>
+    </stereotypes>
+    <visibility xmi:id="_PQSVU8ZjEeSoZ4Yo5vne9Q" label="+"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_PQbfRMZjEeSoZ4Yo5vne9Q" name="Main" associationsOut="_PQSVVMZjEeSoZ4Yo5vne9Q">
+    <modelElement href="CRAWLER.uml#_Ox4iEMZjEeSoZ4Yo5vne9Q"/>
+    <visualProperties xmi:id="_PQbfRcZjEeSoZ4Yo5vne9Q" position="316.0,222.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_PQbfRsZjEeSoZ4Yo5vne9Q" label="+"/>
+    <attributes xmi:id="_PQbfR8ZjEeSoZ4Yo5vne9Q" defaultValue="new DB()" name="db" staticAttribute="true">
+      <modelElement href="CRAWLER.uml#_O6OlwMZjEeSoZ4Yo5vne9Q"/>
+      <stereotypes xmi:id="_PQbfSMZjEeSoZ4Yo5vne9Q" name="LegacyStyledElement">
+        <modelElement href="CRAWLER.uml#_O6OlwsZjEeSoZ4Yo5vne9Q"/>
+      </stereotypes>
+      <visibility xmi:id="_PQbfScZjEeSoZ4Yo5vne9Q" label="+"/>
+      <cardinality xmi:id="_PQbfSsZjEeSoZ4Yo5vne9Q" label="1" max="1" min="1"/>
+      <type xmi:id="_PQbfS8ZjEeSoZ4Yo5vne9Q" name="DB">
+        <modelElement href="CRAWLER.uml#_OxSsMMZjEeSoZ4Yo5vne9Q"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_PQbfTMZjEeSoZ4Yo5vne9Q" name="main" staticOperation="true">
+      <modelElement href="CRAWLER.uml#_OyCTEMZjEeSoZ4Yo5vne9Q"/>
+      <visibility xmi:id="_PQbfTcZjEeSoZ4Yo5vne9Q" label="+"/>
+      <parameters xmi:id="_PQbfTsZjEeSoZ4Yo5vne9Q" name="args">
+        <modelElement href="CRAWLER.uml#_OyCTEcZjEeSoZ4Yo5vne9Q"/>
+        <type xmi:id="_PQbfT8ZjEeSoZ4Yo5vne9Q" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_PQbfUMZjEeSoZ4Yo5vne9Q" name="processPage" staticOperation="true">
+      <modelElement href="CRAWLER.uml#_OyCTE8ZjEeSoZ4Yo5vne9Q"/>
+      <visibility xmi:id="_PQbfUcZjEeSoZ4Yo5vne9Q" label="+"/>
+      <parameters xmi:id="_PQbfUsZjEeSoZ4Yo5vne9Q" name="URL">
+        <modelElement href="CRAWLER.uml#_OyCTFMZjEeSoZ4Yo5vne9Q"/>
+        <type xmi:id="_PQbfU8ZjEeSoZ4Yo5vne9Q" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_PQ4LMMZjEeSoZ4Yo5vne9Q" name="IOException">
+    <modelElement href="CRAWLER.uml#_O5x50MZjEeSoZ4Yo5vne9Q"/>
+    <visualProperties xmi:id="_PQ4LMcZjEeSoZ4Yo5vne9Q" position="473.0,52.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_PQ4LMsZjEeSoZ4Yo5vne9Q" name="Reference">
+      <modelElement href="CRAWLER.uml#_O5x50cZjEeSoZ4Yo5vne9Q"/>
+    </stereotypes>
+    <visibility xmi:id="_PQ4LM8ZjEeSoZ4Yo5vne9Q" label="+"/>
+  </nodes>
+</com.yattasolutions.uml.diagrams.classifier:ClassDiagram>
