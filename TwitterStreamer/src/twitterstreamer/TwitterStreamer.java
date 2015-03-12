@@ -6,6 +6,11 @@ public final class TwitterStreamer {
 
     public static void main(String[] args) throws TwitterException {
         TwitterStream twitterStream = new TwitterStreamFactory().getInstance();
+        FilterQuery fq = new FilterQuery();
+        
+        String keywords[] = {"SS Rotterdam"};
+        fq.track(keywords);
+        
         StatusListener listener = new StatusListener() {
             @Override
             public void onStatus(Status status) {
