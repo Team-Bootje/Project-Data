@@ -48,7 +48,7 @@ public final class TwitterStreamer {
 
         FilterQuery fq = new FilterQuery();
 
-        String keywords[] = {"Rotterdam"};
+        String keywords[] = {"ssRotterdam"};
 
         fq.track(keywords);
 

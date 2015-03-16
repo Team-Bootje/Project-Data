@@ -6,7 +6,6 @@
 package twitterapi;
 
 import twitter4j.*;
-import twitter4j.conf.*;
 
 /**
  *
@@ -16,7 +15,7 @@ public class TwitterAPI {
 
     public static void timeline() throws TwitterException {
         Twitter twitter = TwitterFactory.getSingleton();
-        Query query = new Query("Rotterdam");
+        Query query = new Query("ssRotterdam");
         query.setCount(100);
         QueryResult result = twitter.search(query);
         for (Status status : result.getTweets()) {
