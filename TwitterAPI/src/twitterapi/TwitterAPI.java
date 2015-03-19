@@ -27,6 +27,9 @@ public class TwitterAPI {
         QueryResult result = twitter.search(query);
         for (Status status : result.getTweets()) {
             System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
+            if(status.getPlace() != null) {
+                System.out.println("Gepost vanuit: " + status.getPlace().getName());
+            }
         }
     }
 
