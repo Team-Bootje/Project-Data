@@ -24,16 +24,23 @@ public class GUIProject3 {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JLabel emptyLabel = new JLabel("");
-        emptyLabel.setPreferredSize(new Dimension(800, 600));
         frame.setLayout(new FlowLayout());
-        frame.getContentPane().add(emptyLabel, BorderLayout.CENTER);
         frame.setIconImage(im);
 
+        JPanel panel = new JPanel() {
+            @Override 
+            public void paintComponent(Graphics g) {
+                
+                g.drawRect(100, 600, 200, 200);
+                g.setColor(Color.red);
+            }
+        };
+        frame.add(panel);
+        
         ActionListener myActon = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textArea.append("Er is " + x + " geklikt.");
+                textArea.setText("Er is " + x + " keer geklikt.");
                 x++;
             }
         };
@@ -41,6 +48,7 @@ public class GUIProject3 {
         frame.add(button);
         frame.add(textArea);
         frame.pack();
+        frame.setSize(800, 600);
         frame.setVisible(true);
     }
 
