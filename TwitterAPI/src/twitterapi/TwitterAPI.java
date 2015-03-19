@@ -26,10 +26,12 @@ public class TwitterAPI {
         query.setUntil(datePostFormat);
         QueryResult result = twitter.search(query);
         for (Status status : result.getTweets()) {
-            System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
+            String locatie = null;
             if(status.getPlace() != null) {
-                System.out.println("Gepost vanuit: " + status.getPlace().getName());
-            }
+                locatie = status.getPlace().getName();
+            }            
+            System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText() + " : Favorites: " + status.getFavoriteCount() + " : Retweets: " + status.getRetweetCount() + " : Gepost vanuit: " + locatie);
+            
         }
     }
 
