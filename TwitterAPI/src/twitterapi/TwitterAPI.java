@@ -6,31 +6,26 @@
 package twitterapi;
 
 import twitter4j.*;
-import java.util.*;
-import java.text.*;
+
 
 /**
  * @author Roy van den Heuvel
  */
 public class TwitterAPI {
 
-    static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    static Date date = new Date();
-    static String datePostFormat = dateFormat.format(date);
-
     public static void timeline() throws TwitterException {
         Twitter twitter = TwitterFactory.getSingleton();
         Query query = new Query("ssrotterdam");
         query.setCount(100);
-        query.setSince("2010-01-01");
-        query.setUntil(datePostFormat);
+        query.setUntil("2015-03-19");
+        
         QueryResult result = twitter.search(query);
         for (Status status : result.getTweets()) {
-            String locatie = null;
+            String location = null;
             if(status.getPlace() != null) {
-                locatie = status.getPlace().getName();
+                location = status.getPlace().getName();
             }            
-            System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText() + " : Favorites: " + status.getFavoriteCount() + " : Retweets: " + status.getRetweetCount() + " : Gepost vanuit: " + locatie);
+            System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText() + " : Favorites: " + status.getFavoriteCount() + " : Retweets: " + status.getRetweetCount() + " : Gepost vanuit: " + location);
             
         }
     }
