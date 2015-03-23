@@ -17,7 +17,9 @@ public class TwitterAPI {
         Twitter twitter = TwitterFactory.getSingleton();
         Query query = new Query("ssrotterdam");
         query.setCount(100);
-        query.setUntil("2015-03-19");
+        /**** setSince kan alleen tot 7 dagen terug worden gebruikt****/
+        query.setSince("2015-03-12");
+        query.setUntil("2015-03-13");
         
         QueryResult result = twitter.search(query);
         for (Status status : result.getTweets()) {
