@@ -7,6 +7,7 @@ package teambootje;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.sql.*;
 
 /**
  *
@@ -26,6 +27,7 @@ public class View_Data extends javax.swing.JFrame {
         setTitle("SS Rotterdam Analyse || All Data");
         ImageIcon icon = new ImageIcon("img/bootje.jpg");
         setIconImage(icon.getImage()); 
+        
     }
     
     
@@ -123,6 +125,7 @@ public class View_Data extends javax.swing.JFrame {
             public void run() {
                 new View_Data().setVisible(true);
             }
+            
         });
     }
 

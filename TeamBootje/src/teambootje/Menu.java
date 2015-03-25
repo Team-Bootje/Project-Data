@@ -18,7 +18,7 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
-    JFrame mainPane;
+
     
     public Menu() {
         

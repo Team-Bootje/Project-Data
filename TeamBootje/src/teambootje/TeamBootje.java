@@ -10,6 +10,8 @@ package teambootje;
  * @author kevin
  */
 public class TeamBootje {
+    
+    public static database db = new database();
 
     /**
      * @param args the command line arguments
