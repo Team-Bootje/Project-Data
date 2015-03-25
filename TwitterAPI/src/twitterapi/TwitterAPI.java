@@ -24,12 +24,9 @@ public class TwitterAPI {
         Twitter twitter = TwitterFactory.getSingleton();
         Query query = new Query("ssrotterdam");
         query.setCount(100);
-        /**
-         * ** setSince kan alleen tot 7 dagen terug worden gebruikt***
-         */
-
+        //setSince kan alleen tot 7 dagen terug worden gebruikt
+        query.setSince("");
      
-      
         String post;
         
         QueryResult result = twitter.search(query);
