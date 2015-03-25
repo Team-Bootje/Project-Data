@@ -5,6 +5,7 @@
  */
 package twitterapi;
 
+import java.sql.*;
 import twitter4j.*;
 
 
@@ -27,12 +28,23 @@ public class TwitterAPI {
             if(status.getPlace() != null) {
                 location = status.getPlace().getName();
             }            
-            System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText() + " : Favorites: " + status.getFavoriteCount() + " : Retweets: " + status.getRetweetCount() + " : Gepost vanuit: " + location);
-            
+            System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText() + " : Favorites: " + status.getFavoriteCount() + " : Retweets: " + status.getRetweetCount() + " : Gepost vanuit: " + location);            
         }
     }
 
     public static void main(String[] args) throws TwitterException {
+        try {
+            Connection conn = null;
+            // Step 1: Load the JDBC driver. 
+            Class.forName("org.gjt.mm.mysql.Driver");
+            // Step 2: Establish the connection to the database. 
+            String url = "jdbc:mysql://145.24.235.14/teambootje";
+            String user = "root";
+            String password = "";
+            conn = DriverManager.getConnection(url, user, password);
+        } catch (Exception e) {
+            System.err.println("Got an exception!");
+        }
         timeline();
     }
 }
