@@ -31,7 +31,7 @@ public class FacebookAPI {
     configurationBuilder.setOAuthAppId("450968085058420"); 
     configurationBuilder.setOAuthAppSecret("4f1cb5c92bf70a13d26efd5cc4a62055"); 
     configurationBuilder.setOAuthAccessToken("CAAGaJzCD03QBALRvj5Lpg8q1pMd0xotNIyUA5drpwheILWBMoZB58O0Ee7ZAEJnpqPzNVWcS2eyejq2suLlmUVCj6CrGSWih61XueRDLV0F21reLi02QBfP97Sz1kZBtEKDBD8Mzva4r0obAAQIi15l1wOFkQy7RYYrRY8YJstKLWmlsNpUZCeRi8TbJvQytrWYkMdhmQypxpjZAwVvvA6pIhaqpqTWQZD"); 
-    configurationBuilder .setOAuthPermissions("email, publish_stream, id, name, first_name, last_name, read_stream , generic"); 
+    configurationBuilder .setOAuthPermissions("email, publish_stream, id, name, first_name, last_name, gender, age_range,  read_stream , generic"); 
     configurationBuilder.setUseSSL(true); 
     configurationBuilder.setJSONStoreEnabled(true); 
 // Create configuration and get Facebook instance 
@@ -39,7 +39,7 @@ public class FacebookAPI {
     FacebookFactory ff = new FacebookFactory(configuration);
     Facebook Facebook = ff.getInstance(); 
     try { // Set search string and get results 
-        String searchPost = "ssRotterdam";
+        String searchPost = "";
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "dd_MM_yyyy_hh_mm");
         String fileName = searchPost + "_" + simpleDateFormat.format(date) + ".txt";
@@ -72,7 +72,7 @@ public class FacebookAPI {
 
 
 public static String getFacebookFeed(Facebook Facebook, String searchPost) throws FacebookException { 
-    String searchResult = "";
+    String searchResult = "ssRotterdam";
     StringBuilder searchMessage = new StringBuilder();
     ResponseList<Post> results = Facebook.getFeed(searchPost);
     for (Post post : results) { System.out.println(post.getMessage());
