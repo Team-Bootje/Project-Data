@@ -4,34 +4,72 @@
  * and open the template in the editor.
  */
 package teambootje;
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
-import java.io.IOException;
+
+import java.awt.BorderLayout;
 import java.sql.*;
+import java.util.*;
+import javax.swing.*;
+
+
 
 /**
  *
  * @author kevin
  */
-public class View_Data extends javax.swing.JFrame {
+public class ViewData extends javax.swing.JFrame {
 
     /**
-     * Creates new form View_Data
+     * Creates new form ViewData
      */
+    
     public static database db = new database();
-   
-    public View_Data(){
+    public ViewData() {
         initComponents();
-        setSize(500, 500);
+        setSize(600, 600);
         setLocationRelativeTo(null);
         
         //Create and set up the window.
         setTitle("SS Rotterdam Analyse || All Data");
         ImageIcon icon = new ImageIcon("img/bootje.jpg");
-        setIconImage(icon.getImage()); 
+        setIconImage(icon.getImage());
+        
+        String sql = "SELECT * FROM posts ORDER BY Datum";
+        /*try {
+            ResultSet rs =db.runSql(sql);
+            while(rs.next()){
+              int PID = rs.getInt("PID");
+              int DID = rs.getInt("DID");
+              int AID = rs.getInt("AID");
+              String Post = rs.getString("Post");
+              String Date = rs.getString("Datum");
+             //System.out.println("PostID" + " " + "DoelgroepID" + " " + "Posts"  );
+              System.out.println(PID + " " + DID + " " + AID + " " + Post + " " + Date );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
+        List<Object[]> list = new ArrayList<Object[]>();
+        try{
+          ResultSet rs =db.runSql(sql);
+          while(rs.next()){
+              String[] row = new String[rs.getMetaData().getColumnCount()];
+              for (int i = 1; i < rs.getMetaData().getColumnCount(); i++){
+                row[i] = rs.getString(i);
+          }
+              list.add(row);
+          }
+        }catch (SQLException e){
+          e.printStackTrace();
+        }
+        
+        Object[][] array = new Object[list.size()][];
+        list.toArray(array);
+        Object columnNames[] = {"PID", "DID", "AID", "Posts", "Datum"};
+        setLayout(new BorderLayout());
+        add(new JTable(array,columnNames));
+//        add(new JButton("test"));
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,14 +79,14 @@ public class View_Data extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Exit1 = new javax.swing.JButton();
+        Back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Exit1.setText("Exit");
-        Exit1.addActionListener(new java.awt.event.ActionListener() {
+        Back.setText("Back");
+        Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Exit1ActionPerformed(evt);
+                BackActionPerformed(evt);
             }
         });
 
@@ -56,27 +94,25 @@ public class View_Data extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 406, Short.MAX_VALUE)
-                .addComponent(Exit1))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 345, Short.MAX_VALUE)
+                .addComponent(Back))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Exit1)
-                .addContainerGap(321, Short.MAX_VALUE))
+                .addComponent(Back)
+                .addGap(0, 277, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    private void Exit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Exit1ActionPerformed
-        // TODO add your handling code here: 
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_Exit1ActionPerformed
+    }//GEN-LAST:event_BackActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */
@@ -94,29 +130,25 @@ public class View_Data extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(View_Data.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewData.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(View_Data.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewData.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(View_Data.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewData.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(View_Data.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewData.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new View_Data().setVisible(true);
-              
+                new ViewData().setVisible(true);
             }
-            
         });
-    } 
-    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Exit1;
+    private javax.swing.JButton Back;
     // End of variables declaration//GEN-END:variables
-
 }
