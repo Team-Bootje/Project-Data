@@ -1,0 +1,3 @@
+SELECT `Datum`, COUNT(*)
+FROM	posts
+GROUP BY `Datum`
