@@ -28,36 +28,48 @@ public class TwitterAPI {
          * ** setSince kan alleen tot 7 dagen terug worden gebruikt***
          */
 
-     
-      
         String post;
-        
+
         QueryResult result = twitter.search(query);
         for (Status status : result.getTweets()) {
-            String location = null;
+            String locationCity = null;
+            String locationCountry = null;
             if (status.getPlace() != null) {
-                location = status.getPlace().getName();
+                locationCity = status.getPlace().getName();
+                locationCountry = status.getPlace().getCountry();
             } else {
-                location = "Niet beschikbaar";
+                locationCity = "Niet beschikbaar";
+                locationCountry = "Niet beschikbaar";
             }
-            System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText() + " : Favorites: " + status.getFavoriteCount() + " : Retweets: " + status.getRetweetCount() + " : Gepost vanuit: " + location);
+            System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText() + " : Favorites: " + status.getFavoriteCount() + " : Retweets: " + status.getRetweetCount() + " : Gepost vanuit: " + locationCity);
             Connection conn = getConn();
-            String SQLQuery = " insert into posts (PID, DID, AID, Post)"
-                    + " values(?, ?, ?, ?)";
-            PreparedStatement preparedStmnt = conn.prepareStatement(SQLQuery);
+            /*
+             String SQLQueryPost = "INSERT INTO posts (DID, AID, Post)"
+             + " VALUES(?, ?, ?)";
+             String SQLQueryPersoon = "INSERT INTO persoon (Name, Leeftijd, Geslacht, LID)"
+             + " VALUES(?, ?, ?, ?)";
+             String SQLQueryLocatie = "INSERT INTO locatie (Provincie, Land)"
+             + " VALUES(?, ?)";
+             String SQLCheckLocatie = "SELECT COUNT(*) FROM locatie WHERE provincie = ?";
+             PreparedStatement preparedStmnt1 = conn.prepareStatement(SQLQueryPost);
+             PreparedStatement preparedStmnt2 = conn.prepareStatement(SQLQueryPersoon);
+             PreparedStatement prepareCheckLocatie = conn.prepareStatement(SQLCheckLocatie);
+             PreparedStatement preparedStmnt3 = conn.prepareStatement(SQLQueryLocatie);
+             */
 
-            post = status.getText();
-            preparedStmnt.setInt(1, 1);
-            preparedStmnt.setInt(2, 2);
-            preparedStmnt.setInt(3, 3);
-            preparedStmnt.setString(4, post);     
-            preparedStmnt.execute();
+            Statement stmnt = conn.createStatement();
+            
+            ResultSet RSLocatie = stmnt.executeQuery("SELECT COUNT(*) AS count FROM locatie WHERE provincie = " + locationCountry + ")");
+
+            if (RSLocatie.getInt("count") >= 1) {
+                stmnt.executeQuery("INSERT INTO locatie(Land, Stad) VALUES('"+ locationCountry +"', '"+ locationCity +"');");
+            }           
         }
     }
-    
+
     public static Connection getConn() {
         Connection conn = null;
-        try {          
+        try {
             // Step 1: Load the JDBC driver. 
             Class.forName("com.mysql.jdbc.Driver");
             // Step 2: Establish the connection to the database. 
