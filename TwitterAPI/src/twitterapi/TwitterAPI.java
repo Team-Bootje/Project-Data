@@ -38,32 +38,35 @@ public class TwitterAPI {
                 locationCity = status.getPlace().getName();
                 locationCountry = status.getPlace().getCountry();
             } else {
-                locationCity = "Niet beschikbaar";
-                locationCountry = "Niet beschikbaar";
+                locationCity = "Niet_beschikbaar";
+                locationCountry = "Niet_beschikbaar";
             }
             System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText() + " : Favorites: " + status.getFavoriteCount() + " : Retweets: " + status.getRetweetCount() + " : Gepost vanuit: " + locationCity);
             Connection conn = getConn();
-            /*
-             String SQLQueryPost = "INSERT INTO posts (DID, AID, Post)"
-             + " VALUES(?, ?, ?)";
-             String SQLQueryPersoon = "INSERT INTO persoon (Name, Leeftijd, Geslacht, LID)"
-             + " VALUES(?, ?, ?, ?)";
-             String SQLQueryLocatie = "INSERT INTO locatie (Provincie, Land)"
-             + " VALUES(?, ?)";
-             String SQLCheckLocatie = "SELECT COUNT(*) FROM locatie WHERE provincie = ?";
-             PreparedStatement preparedStmnt1 = conn.prepareStatement(SQLQueryPost);
-             PreparedStatement preparedStmnt2 = conn.prepareStatement(SQLQueryPersoon);
-             PreparedStatement prepareCheckLocatie = conn.prepareStatement(SQLCheckLocatie);
-             PreparedStatement preparedStmnt3 = conn.prepareStatement(SQLQueryLocatie);
-             */
-
-            Statement stmnt = conn.createStatement();
             
-            ResultSet RSLocatie = stmnt.executeQuery("SELECT COUNT(*) AS count FROM locatie WHERE provincie = " + locationCountry + ")");
+            // LOCATIE
+            PreparedStatement locatieStmnt = conn.prepareStatement("INSERT INTO locatie(Land, Stad) VALUES(?, ?);");
+            
+            locatieStmnt.setString(1, locationCountry);
+            locatieStmnt.setString(2, locationCity);
+            
+            locatieStmnt.execute();
+            
+            // PERSOON
+            PreparedStatement persoonStmnt = conn.prepareStatement("INSERT INTO persoon(Name, LID) VALUES(?, ?);");
+            PreparedStatement checkLID = conn.prepareStatement("SELECT LID FROM locatie WHERE stad = ?");
+            
+            //haalt LID van persoon op
+            checkLID.setString(1, locationCity);
+            checkLID.execute();
+            ResultSet RSCheckLID = checkLID.executeQuery();
+            while (RSCheckLID.next()) {
+                int LID = RSCheckLID.getInt(1);
+                persoonStmnt.setString(1, status.getUser().getScreenName());
+                persoonStmnt.setInt(2, LID);
+                persoonStmnt.execute();
+            }
 
-            if (RSLocatie.getInt("count") >= 1) {
-                stmnt.executeQuery("INSERT INTO locatie(Land, Stad) VALUES('"+ locationCountry +"', '"+ locationCity +"');");
-            }           
         }
     }
 
