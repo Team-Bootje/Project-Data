@@ -21,14 +21,12 @@ public class TwitterAPI {
     static final String PASS = "";
 
     public static void timeline() throws TwitterException, SQLException {
-        Twitter twitter = TwitterFactory.getSingleton();
+        Twitter twitter = TwitterFactory.getSingleton();      
         Query query = new Query("ssrotterdam");
         query.setCount(100);
         /**
-         * ** setSince kan alleen tot 7 dagen terug worden gebruikt***
+         ** setSince kan alleen tot 7 dagen terug worden gebruikt***
          */
-
-        String post;
 
         QueryResult result = twitter.search(query);
         for (Status status : result.getTweets()) {
@@ -50,7 +48,9 @@ public class TwitterAPI {
             locatieStmnt.setString(1, locationCountry);
             locatieStmnt.setString(2, locationCity);
             
-            locatieStmnt.execute();
+            if(locatieStmnt.execute()){
+                
+            }
             
             // PERSOON
             PreparedStatement persoonStmnt = conn.prepareStatement("INSERT INTO persoon(Name, LID) VALUES(?, ?);");
@@ -66,7 +66,6 @@ public class TwitterAPI {
                 persoonStmnt.setInt(2, LID);
                 persoonStmnt.execute();
             }
-
         }
     }
 
