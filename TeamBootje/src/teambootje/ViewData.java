@@ -33,6 +33,8 @@ public class ViewData extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon("img/bootje.jpg");
         setIconImage(icon.getImage());
         
+        
+        
         String sql = "SELECT * FROM posts ORDER BY Datum";
         /*try {
             ResultSet rs =db.runSql(sql);
