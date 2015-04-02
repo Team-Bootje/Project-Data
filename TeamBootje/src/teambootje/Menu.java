@@ -229,11 +229,6 @@ public class Menu extends javax.swing.JFrame {
 
     private void GTDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GTDActionPerformed
         // TODO add your handling code here:
-       java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TwitterGui().setVisible(true);
-            }
-        });
     }//GEN-LAST:event_GTDActionPerformed
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
@@ -243,101 +238,46 @@ public class Menu extends javax.swing.JFrame {
 
     private void GBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GBActionPerformed
         // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new A1().setVisible(true);
-            }
-        });
     }//GEN-LAST:event_GBActionPerformed
 
     private void WSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WSActionPerformed
         // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new A2().setVisible(true);
-            }
-        });
     }//GEN-LAST:event_WSActionPerformed
 
     private void NPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NPActionPerformed
         // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new A3().setVisible(true);
-            }
-        });
     }//GEN-LAST:event_NPActionPerformed
 
     private void PPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PPActionPerformed
         // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new A4().setVisible(true);
-            }
-        });
     }//GEN-LAST:event_PPActionPerformed
 
     private void LBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LBActionPerformed
         // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new A5().setVisible(true);
-            }
-        });
     }//GEN-LAST:event_LBActionPerformed
 
     private void WBVKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WBVKActionPerformed
         // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new A6().setVisible(true);
-            }
-        });
     }//GEN-LAST:event_WBVKActionPerformed
 
     private void DGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DGActionPerformed
         // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new A7().setVisible(true);
-            }
-        });
     }//GEN-LAST:event_DGActionPerformed
 
     private void WZKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WZKActionPerformed
         // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new A8().setVisible(true);
-            }
-        });
     }//GEN-LAST:event_WZKActionPerformed
 
     private void MBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MBActionPerformed
         // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new A9().setVisible(true);
-            }
-        });
     }//GEN-LAST:event_MBActionPerformed
 
     private void EmptyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmptyActionPerformed
         // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new A10().setVisible(true);
-            }
-        });
     }//GEN-LAST:event_EmptyActionPerformed
 
     private void GFDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GFDActionPerformed
         // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FacebookGui().setVisible(true);
-            }
-        });
     }//GEN-LAST:event_GFDActionPerformed
 
     private void BDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDActionPerformed
