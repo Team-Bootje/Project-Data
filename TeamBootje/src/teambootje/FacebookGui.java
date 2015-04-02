@@ -5,29 +5,25 @@
  */
 package teambootje;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+import facebook4j.Facebook;
+import facebook4j.FacebookException;
+import facebook4j.FacebookFactory;
+import facebook4j.conf.Configuration;
+import facebook4j.conf.ConfigurationBuilder;
 import facebookapi.FacebookAPI;
 import facebookapi.*;
 import javax.swing.ImageIcon;
-import facebook4j.Facebook; 
-import facebook4j.FacebookException; 
-import facebook4j.FacebookFactory;
-import facebook4j.Post; 
-import facebook4j.ResponseList; 
-import facebook4j.conf.Configuration;
-import facebook4j.conf.ConfigurationBuilder;
 import static facebookapi.FacebookAPI.getFacebookPostes;
-=======
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
->>>>>>> origin/master
-=======
 import javax.swing.ImageIcon;
->>>>>>> parent of a9f8134... fb in bootje
+
 
 /**
  *
@@ -38,32 +34,18 @@ public class FacebookGui extends javax.swing.JFrame {
     /**
      * Creates new form FacebookGui
      */
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     public FacebookGui() throws FacebookException {
        initComponents();
-=======
-    public FacebookGui() {
-        initComponents();
         setSize(500,500);
         setLayout(new BorderLayout());
->>>>>>> origin/master
-=======
-    public FacebookGui() {
-        initComponents();
->>>>>>> parent of a9f8134... fb in bootje
         setLocationRelativeTo(null);
         
         //Create and set up the window.
         setTitle("SS Rotterdam Analyse || Get Facebook Data");
         ImageIcon icon = new ImageIcon("img/bootje.jpg");
         setIconImage(icon.getImage());
-<<<<<<< HEAD
-        
-<<<<<<< HEAD
-        
-        
-        
+
         ConfigurationBuilder configurationBuilder = new ConfigurationBuilder(); 
         configurationBuilder.setDebugEnabled(true); 
         configurationBuilder.setOAuthAppId("476059649213785"); 
@@ -82,10 +64,7 @@ public class FacebookGui extends javax.swing.JFrame {
         FacebookAPI fbookAPI = new FacebookAPI();
         FacebookAPI.getFacebookFeed(Facebook, searchPost);
       
-       
-        
 
-=======
         //Back btn
         JButton back = new JButton("Back");
         add(back, BorderLayout.NORTH);
@@ -94,11 +73,9 @@ public class FacebookGui extends javax.swing.JFrame {
         JPanel fb = new JPanel();
         add(fb, BorderLayout.CENTER);
         
-        JLabel fbapi = new JLabel("Uw Text hier");
+        JLabel fbapi = new JLabel(FacebookAPI.getFacebookFeed(Facebook, searchPost));
         fb.add(fbapi);
->>>>>>> origin/master
-=======
->>>>>>> parent of a9f8134... fb in bootje
+
     }
 
     /**
@@ -156,7 +133,13 @@ public class FacebookGui extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FacebookGui().setVisible(true);
+                FacebookGui fgui = null;
+                try {
+                    fgui = new FacebookGui();
+                } catch (FacebookException ex) {
+                    Logger.getLogger(FacebookGui.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                fgui.setVisible(true);
             }
         });
     }
