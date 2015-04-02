@@ -5,7 +5,13 @@
  */
 package teambootje;
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -21,9 +27,31 @@ public class A10 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         //Create and set up the window.
-        setTitle("SS Rotterdam Analyse || Analyse 10");
+        setTitle("SS Rotterdam Analyse || Readme");
         ImageIcon icon = new ImageIcon("img/bootje.jpg");
         setIconImage(icon.getImage());
+        setLayout(new BorderLayout());
+        
+        JButton back = new JButton("Back");
+        add(back, BorderLayout.NORTH);
+        
+        JPanel readme = new JPanel();
+        add(readme, BorderLayout.CENTER);
+        JLabel Header = new JLabel("<html>README<br></html>");
+        JLabel Body = new JLabel("<html>Ik ben body<br></html>");
+        JLabel Footer = new JLabel("<html><br>Gemaakt door: Johan Bos,<br> Kevin Verweij, \n Roy van den Heuvel, \n Steven </html>");
+        readme.add(Header);
+        readme.add(Body);
+        readme.add(Footer);
+        
+        back.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
     }
 
     /**
