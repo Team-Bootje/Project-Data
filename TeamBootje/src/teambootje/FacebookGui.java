@@ -6,6 +6,7 @@
 package teambootje;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import facebookapi.FacebookAPI;
 import facebookapi.*;
 import javax.swing.ImageIcon;
@@ -24,6 +25,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 >>>>>>> origin/master
+=======
+import javax.swing.ImageIcon;
+>>>>>>> parent of a9f8134... fb in bootje
 
 /**
  *
@@ -35,6 +39,7 @@ public class FacebookGui extends javax.swing.JFrame {
      * Creates new form FacebookGui
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
     public FacebookGui() throws FacebookException {
        initComponents();
 =======
@@ -43,12 +48,17 @@ public class FacebookGui extends javax.swing.JFrame {
         setSize(500,500);
         setLayout(new BorderLayout());
 >>>>>>> origin/master
+=======
+    public FacebookGui() {
+        initComponents();
+>>>>>>> parent of a9f8134... fb in bootje
         setLocationRelativeTo(null);
         
         //Create and set up the window.
         setTitle("SS Rotterdam Analyse || Get Facebook Data");
         ImageIcon icon = new ImageIcon("img/bootje.jpg");
         setIconImage(icon.getImage());
+<<<<<<< HEAD
         
 <<<<<<< HEAD
         
@@ -87,8 +97,9 @@ public class FacebookGui extends javax.swing.JFrame {
         JLabel fbapi = new JLabel("Uw Text hier");
         fb.add(fbapi);
 >>>>>>> origin/master
+=======
+>>>>>>> parent of a9f8134... fb in bootje
     }
-        
 
     /**
      * This method is called from within the constructor to initialize the form.
