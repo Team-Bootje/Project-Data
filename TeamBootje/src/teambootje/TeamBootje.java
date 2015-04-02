@@ -41,7 +41,7 @@ public class TeamBootje {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                new Login().setVisible(true);
             }
         });
        

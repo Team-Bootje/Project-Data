@@ -6,6 +6,7 @@
 package teambootje;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
@@ -75,6 +76,7 @@ public class ViewData extends javax.swing.JFrame {
         add(frame, BorderLayout.CENTER);
         JTable table = new JTable(array,columnNames); 
         JScrollPane scroll = new JScrollPane(table);
+        scroll.setPreferredSize(new Dimension(500, 500));
         frame.add(scroll);
         
         

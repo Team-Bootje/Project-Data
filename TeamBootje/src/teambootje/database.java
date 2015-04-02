@@ -5,12 +5,14 @@
  */
 package teambootje;
 import java.sql.*;
+import java.util.logging.Logger;
 
 /**
  *
  * @author kevin
  */
 public class database {
+    private static final Logger LOG = Logger.getLogger(database.class.getName());
     //check if con = null
     
     public Connection conn = null;

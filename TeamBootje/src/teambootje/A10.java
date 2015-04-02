@@ -42,10 +42,10 @@ public class A10 extends javax.swing.JFrame {
         add(readme, BorderLayout.CENTER);
         JLabel read = new JLabel(
                 "<html>"
-                        + "<h1>Readme</h1>"
-                        + "Dit programma is Speciaal gemaak voor analyse voor het gebouw/schip De SSRotterdam<br>"
+                        + "<h1 style=\"text-align: center\">Readme</h1>"
+                        + "Dit programma is Speciaal gemaak voor analyse voor het gebouw/schip De SSRotterdam.<br>"
                         + ""
-                        + "<br>Gemaakt door:<br> Johan Bos,<br> Kevin Verweij,<br> Roy van den Heuvel, <br> Steven "
+                        + "<br>Gemaakt door:<br> Johan Bos,<br> Kevin Verweij,<br> Roy van den Heuvel, <br> Steven van der Stel"
              + "</html>"
         );
         readme.add(read);
