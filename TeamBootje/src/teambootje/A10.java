@@ -29,20 +29,26 @@ public class A10 extends javax.swing.JFrame {
         //Create and set up the window.
         setTitle("SS Rotterdam Analyse || Readme");
         ImageIcon icon = new ImageIcon("img/bootje.jpg");
+        setLocationRelativeTo(null);
         setIconImage(icon.getImage());
         setLayout(new BorderLayout());
+        setSize(600,600);
+        setResizable(false);
         
         JButton back = new JButton("Back");
         add(back, BorderLayout.NORTH);
         
         JPanel readme = new JPanel();
         add(readme, BorderLayout.CENTER);
-        JLabel Header = new JLabel("<html>README<br></html>");
-        JLabel Body = new JLabel("<html>Ik ben body<br></html>");
-        JLabel Footer = new JLabel("<html><br>Gemaakt door: Johan Bos,<br> Kevin Verweij, \n Roy van den Heuvel, \n Steven </html>");
-        readme.add(Header);
-        readme.add(Body);
-        readme.add(Footer);
+        JLabel read = new JLabel(
+                "<html>"
+                        + "<h1>Readme</h1>"
+                        + "Dit programma is Speciaal gemaak voor analyse voor het gebouw/schip De SSRotterdam<br>"
+                        + ""
+                        + "<br>Gemaakt door:<br> Johan Bos,<br> Kevin Verweij,<br> Roy van den Heuvel, <br> Steven "
+             + "</html>"
+        );
+        readme.add(read);
         
         back.addActionListener(new ActionListener()
         {

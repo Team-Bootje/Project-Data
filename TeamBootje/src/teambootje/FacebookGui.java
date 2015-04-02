@@ -5,7 +5,11 @@
  */
 package teambootje;
 
-import javax.swing.ImageIcon;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
 
 /**
  *
@@ -18,12 +22,25 @@ public class FacebookGui extends javax.swing.JFrame {
      */
     public FacebookGui() {
         initComponents();
+        setSize(500,500);
+        setLayout(new BorderLayout());
         setLocationRelativeTo(null);
         
         //Create and set up the window.
         setTitle("SS Rotterdam Analyse || Get Facebook Data");
         ImageIcon icon = new ImageIcon("img/bootje.jpg");
         setIconImage(icon.getImage());
+        
+        //Back btn
+        JButton back = new JButton("Back");
+        add(back, BorderLayout.NORTH);
+        
+        //JPanel en label
+        JPanel fb = new JPanel();
+        add(fb, BorderLayout.CENTER);
+        
+        JLabel fbapi = new JLabel("Uw Text hier");
+        fb.add(fbapi);
     }
 
     /**

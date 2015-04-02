@@ -8,7 +8,6 @@ package teambootje;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.sql.*;
 import java.util.*;
 import javax.swing.*;
@@ -67,10 +66,13 @@ public class ViewData extends javax.swing.JFrame {
         list.toArray(array);
         Object columnNames[] = {"PID", "DID", "AID", "Posts", "Datum"};
         
-        JTable table = new JTable(array,columnNames);
+        
         JPanel frame = new JPanel();
         add(frame, BorderLayout.CENTER);
+        JTable table = new JTable(array,columnNames);
         frame.add(table);
+        
+        
         
         
     }
