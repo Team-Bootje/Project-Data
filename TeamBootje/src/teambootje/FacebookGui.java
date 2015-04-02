@@ -27,7 +27,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author kevin
+ * @author kevin en johan
  */
 public class FacebookGui extends javax.swing.JFrame {
 
