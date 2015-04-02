@@ -33,21 +33,9 @@ public class ViewData extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon("img/bootje.jpg");
         setIconImage(icon.getImage());
         
+        
+        
         String sql = "SELECT * FROM posts ORDER BY Datum";
-        /*try {
-            ResultSet rs =db.runSql(sql);
-            while(rs.next()){
-              int PID = rs.getInt("PID");
-              int DID = rs.getInt("DID");
-              int AID = rs.getInt("AID");
-              String Post = rs.getString("Post");
-              String Date = rs.getString("Datum");
-             //System.out.println("PostID" + " " + "DoelgroepID" + " " + "Posts"  );
-              System.out.println(PID + " " + DID + " " + AID + " " + Post + " " + Date );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
         List<Object[]> list = new ArrayList<Object[]>();
         try{
           ResultSet rs =db.runSql(sql);
@@ -66,8 +54,12 @@ public class ViewData extends javax.swing.JFrame {
         list.toArray(array);
         Object columnNames[] = {"PID", "DID", "AID", "Posts", "Datum"};
         setLayout(new BorderLayout());
-        add(new JTable(array,columnNames));
-//        add(new JButton("test"));
+        JTable table = new JTable(array,columnNames);
+        JPanel frame = new JPanel();
+        add(frame);
+        frame.add(table);
+        
+        
     }
 
     /**
@@ -84,6 +76,10 @@ public class ViewData extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Back.setText("Back");
+        Back.setToolTipText("");
+        Back.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Back.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        Back.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackActionPerformed(evt);
@@ -94,15 +90,16 @@ public class ViewData extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 345, Short.MAX_VALUE)
-                .addComponent(Back))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(335, Short.MAX_VALUE)
+                .addComponent(Back)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Back)
-                .addGap(0, 277, Short.MAX_VALUE))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
 
         pack();
@@ -113,6 +110,7 @@ public class ViewData extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BackActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
