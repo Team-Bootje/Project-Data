@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 package teambootje;
+import facebook4j.FacebookException;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import teambootje.ViewData;
@@ -338,7 +341,13 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FacebookGui().setVisible(true);
+                FacebookGui fgui = null;
+                try {
+                    fgui = new FacebookGui();
+                } catch (FacebookException ex) {
+                    Logger.getLogger(FacebookGui.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                fgui.setVisible(true);
             }
         });
     }//GEN-LAST:event_GFDActionPerformed

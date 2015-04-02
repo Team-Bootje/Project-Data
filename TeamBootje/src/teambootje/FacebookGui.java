@@ -69,6 +69,15 @@ public class FacebookGui extends javax.swing.JFrame {
         JButton back = new JButton("Back");
         add(back, BorderLayout.NORTH);
         
+        back.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        
         //JPanel en label
         JPanel fb = new JPanel();
         add(fb, BorderLayout.CENTER);
