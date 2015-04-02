@@ -6,6 +6,8 @@
 package teambootje;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.*;
 import javax.swing.*;
@@ -32,8 +34,18 @@ public class ViewData extends javax.swing.JFrame {
         setTitle("SS Rotterdam Analyse || All Data");
         ImageIcon icon = new ImageIcon("img/bootje.jpg");
         setIconImage(icon.getImage());
+        setLayout(new BorderLayout());
         
+        JButton back = new JButton("Back");
+        add(back, BorderLayout.NORTH);
         
+        back.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
         
         String sql = "SELECT * FROM posts ORDER BY Datum";
         List<Object[]> list = new ArrayList<Object[]>();
@@ -53,11 +65,14 @@ public class ViewData extends javax.swing.JFrame {
         Object[][] array = new Object[list.size()][];
         list.toArray(array);
         Object columnNames[] = {"PID", "DID", "AID", "Posts", "Datum"};
-        setLayout(new BorderLayout());
-        JTable table = new JTable(array,columnNames);
+        
+        
         JPanel frame = new JPanel();
-        add(frame);
+        add(frame, BorderLayout.CENTER);
+        JTable table = new JTable(array,columnNames);
         frame.add(table);
+        
+        
         
         
     }
@@ -71,44 +86,21 @@ public class ViewData extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Back = new javax.swing.JButton();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        Back.setText("Back");
-        Back.setToolTipText("");
-        Back.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Back.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        Back.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(335, Short.MAX_VALUE)
-                .addComponent(Back)
-                .addContainerGap())
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Back)
-                .addContainerGap(277, Short.MAX_VALUE))
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_BackActionPerformed
 
     
     /**
@@ -147,6 +139,6 @@ public class ViewData extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Back;
     // End of variables declaration//GEN-END:variables
+
 }

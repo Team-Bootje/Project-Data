@@ -44,19 +44,19 @@ public class TwitterAPI {
                 locationCity = status.getPlace().getName();
                 locationCountry = status.getPlace().getCountry();
             } else {
-                countryVar = null;
-                cityVar = null;
-                locationCity = null;
-                locationCountry = null;
+                countryVar = "N/A";
+                cityVar = "N/A";
+                locationCity = "N/A";
+                locationCountry = "N/A";
             }
-            System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText() + " : Favorites: " + status.getFavoriteCount() + " : Retweets: " + status.getRetweetCount() + " : Gepost vanuit: " + locationCity);         
+            //System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText() + " : Favorites: " + status.getFavoriteCount() + " : Retweets: " + status.getRetweetCount() + " : Gepost vanuit: " + locationCity);         
             
             screenName = status.getUser().getScreenName();
             try{
                 ImportIntoSQL.TwitterImport();
             }
             catch(SQLException e){
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         }
     }

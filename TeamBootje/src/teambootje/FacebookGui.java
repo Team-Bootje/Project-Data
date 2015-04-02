@@ -5,6 +5,7 @@
  */
 package teambootje;
 
+<<<<<<< HEAD
 import facebookapi.FacebookAPI;
 import facebookapi.*;
 import javax.swing.ImageIcon;
@@ -16,6 +17,13 @@ import facebook4j.ResponseList;
 import facebook4j.conf.Configuration;
 import facebook4j.conf.ConfigurationBuilder;
 import static facebookapi.FacebookAPI.getFacebookPostes;
+=======
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+>>>>>>> origin/master
 
 /**
  *
@@ -26,8 +34,15 @@ public class FacebookGui extends javax.swing.JFrame {
     /**
      * Creates new form FacebookGui
      */
+<<<<<<< HEAD
     public FacebookGui() throws FacebookException {
        initComponents();
+=======
+    public FacebookGui() {
+        initComponents();
+        setSize(500,500);
+        setLayout(new BorderLayout());
+>>>>>>> origin/master
         setLocationRelativeTo(null);
         
         //Create and set up the window.
@@ -35,6 +50,7 @@ public class FacebookGui extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon("img/bootje.jpg");
         setIconImage(icon.getImage());
         
+<<<<<<< HEAD
         
         
         
@@ -59,6 +75,18 @@ public class FacebookGui extends javax.swing.JFrame {
        
         
 
+=======
+        //Back btn
+        JButton back = new JButton("Back");
+        add(back, BorderLayout.NORTH);
+        
+        //JPanel en label
+        JPanel fb = new JPanel();
+        add(fb, BorderLayout.CENTER);
+        
+        JLabel fbapi = new JLabel("Uw Text hier");
+        fb.add(fbapi);
+>>>>>>> origin/master
     }
         
 
