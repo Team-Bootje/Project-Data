@@ -5,7 +5,17 @@
  */
 package teambootje;
 
+import facebookapi.FacebookAPI;
+import facebookapi.*;
 import javax.swing.ImageIcon;
+import facebook4j.Facebook; 
+import facebook4j.FacebookException; 
+import facebook4j.FacebookFactory;
+import facebook4j.Post; 
+import facebook4j.ResponseList; 
+import facebook4j.conf.Configuration;
+import facebook4j.conf.ConfigurationBuilder;
+import static facebookapi.FacebookAPI.getFacebookPostes;
 
 /**
  *
@@ -16,15 +26,41 @@ public class FacebookGui extends javax.swing.JFrame {
     /**
      * Creates new form FacebookGui
      */
-    public FacebookGui() {
-        initComponents();
+    public FacebookGui() throws FacebookException {
+       initComponents();
         setLocationRelativeTo(null);
         
         //Create and set up the window.
         setTitle("SS Rotterdam Analyse || Get Facebook Data");
         ImageIcon icon = new ImageIcon("img/bootje.jpg");
         setIconImage(icon.getImage());
+        
+        
+        
+        
+        ConfigurationBuilder configurationBuilder = new ConfigurationBuilder(); 
+        configurationBuilder.setDebugEnabled(true); 
+        configurationBuilder.setOAuthAppId("476059649213785"); 
+        configurationBuilder.setOAuthAppSecret("88eacd3eec295028a3f56ca4b7cc69ef"); 
+        configurationBuilder.setOAuthAccessToken("CAAGwZBUZAIhVkBAKTrnvgZConGF4l1ZAABE1AhC7e245J9s8LcbIdGmQzZAO4PcRgvkt2uHzW2hRdSp4UVQN6xDIz4wI32UsQbtBicQD2lD9PNEZBlgZBE9f0VwPtZAsumz1KwNOcoZCF2R7jc2wCPG1JRRyZCjzuQeQhQ4jlEeXh0LQI53jh24ZCvj5PVGPPpbKQYZD"); 
+        configurationBuilder.setOAuthPermissions("email, publish_stream, id, name, first_name, last_name, read_stream , generic"); 
+        configurationBuilder.setUseSSL(true); 
+        configurationBuilder.setJSONStoreEnabled(true); 
+        Configuration configuration = configurationBuilder.build();
+        FacebookFactory ff = new FacebookFactory(configuration);
+        Facebook Facebook = ff.getInstance();
+        String searchPost = "ssRotterdam";
+       // String results = getFacebookPostes(Facebook, searchPost);
+        
+        
+        FacebookAPI fbookAPI = new FacebookAPI();
+        FacebookAPI.getFacebookFeed(Facebook, searchPost);
+      
+       
+        
+
     }
+        
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package facebookapi;
+package teambootje;
 
 import facebook4j.Facebook; 
 import facebook4j.FacebookException; 
@@ -18,9 +18,9 @@ import facebook4j.conf.ConfigurationBuilder;
  * @author Johan
  */
 public class FacebookAPI {
+    
+    public static String FB() throws FacebookException{
 
-    public static void main(String[] args) throws FacebookException {
- 
     ConfigurationBuilder configurationBuilder = new ConfigurationBuilder(); 
     configurationBuilder.setDebugEnabled(true); 
     configurationBuilder.setOAuthAppId("476059649213785"); 
@@ -33,10 +33,12 @@ public class FacebookAPI {
     Configuration configuration = configurationBuilder.build();
     FacebookFactory ff = new FacebookFactory(configuration);
     Facebook Facebook = ff.getInstance(); 
-     String searchPost = "ssRotterdam";
+    String searchPost = "ssRotterdam";
     String results = getFacebookPostes(Facebook, searchPost);
     
+    return results;
     }
+    
     
     
     public static String getFacebookPostes(Facebook Facebook, String searchPost) throws FacebookException { 
@@ -72,3 +74,4 @@ public static String getFacebookFeed(Facebook Facebook, String searchPost) throw
     return searchResult; }
 
 }
+
