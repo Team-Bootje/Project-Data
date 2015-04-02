@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `doelgroep` (
 `DID` int(11) NOT NULL,
-  `Doelgroep` varchar(45),
-  `Redebezoek` varchar(45) 
+  `Doelgroep` varchar(45) NOT NULL,
+  `Redebezoek` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -48,6 +48,11 @@ CREATE TABLE IF NOT EXISTS `locatie` (
 -- Gegevens worden geëxporteerd voor tabel `locatie`
 --
 
+INSERT INTO `locatie` (`LID`, `Land`, `Stad`) VALUES
+(17, 'Nederland', 'Bergen op Zoom'),
+(18, 'Nederland', 'Rotterdam'),
+(19, 'Nederland', 'Veenendaal');
+
 -- --------------------------------------------------------
 
 --
@@ -59,8 +64,19 @@ CREATE TABLE IF NOT EXISTS `persoon` (
   `Name` varchar(45) NOT NULL,
   `Leeftijd` int(3) DEFAULT NULL,
   `Geslacht` varchar(5) DEFAULT NULL,
-  `LID` int(11)
+  `LID` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `persoon`
+--
+
+INSERT INTO `persoon` (`AID`, `Name`, `Leeftijd`, `Geslacht`, `LID`) VALUES
+(11, 'RuudvandenBos', NULL, NULL, 17),
+(12, 'EdwindeKoning1', NULL, NULL, 18),
+(13, 'Gerarddegraaff', NULL, NULL, 19);
+
+-- --------------------------------------------------------
 
 --
 -- Tabelstructuur voor tabel `posts`
@@ -68,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `persoon` (
 
 CREATE TABLE IF NOT EXISTS `posts` (
 `PID` int(11) NOT NULL,
-  `DID` int(11),
+  `DID` int(11) NOT NULL,
   `AID` int(11) NOT NULL,
   `Post` varchar(255) NOT NULL,
   `Datum` date NOT NULL
@@ -94,13 +110,13 @@ ALTER TABLE `locatie`
 -- Indexen voor tabel `persoon`
 --
 ALTER TABLE `persoon`
- ADD PRIMARY KEY (`AID`), ADD UNIQUE KEY `Name` (`Name`), ADD KEY `LID` (`LID`);
+ ADD PRIMARY KEY (`AID`,`LID`), ADD UNIQUE KEY `Name` (`Name`), ADD KEY `LID` (`LID`);
 
 --
 -- Indexen voor tabel `posts`
 --
 ALTER TABLE `posts`
- ADD PRIMARY KEY (`PID`), ADD UNIQUE KEY `PID` (`PID`), ADD KEY `DID` (`DID`), ADD KEY `AID` (`AID`);
+ ADD PRIMARY KEY (`PID`,`DID`,`AID`), ADD UNIQUE KEY `PID` (`PID`), ADD KEY `DID` (`DID`), ADD KEY `AID` (`AID`);
 
 --
 -- AUTO_INCREMENT voor geëxporteerde tabellen
@@ -115,12 +131,12 @@ MODIFY `DID` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT voor een tabel `locatie`
 --
 ALTER TABLE `locatie`
-MODIFY `LID` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `LID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT voor een tabel `persoon`
 --
 ALTER TABLE `persoon`
-MODIFY `AID` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `AID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT voor een tabel `posts`
 --
@@ -129,6 +145,19 @@ MODIFY `PID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Beperkingen voor geëxporteerde tabellen
 --
+
+--
+-- Beperkingen voor tabel `persoon`
+--
+ALTER TABLE `persoon`
+ADD CONSTRAINT `persoon_ibfk_1` FOREIGN KEY (`LID`) REFERENCES `locatie` (`LID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Beperkingen voor tabel `posts`
+--
+ALTER TABLE `posts`
+ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`DID`) REFERENCES `doelgroep` (`DID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`AID`) REFERENCES `persoon` (`AID`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
