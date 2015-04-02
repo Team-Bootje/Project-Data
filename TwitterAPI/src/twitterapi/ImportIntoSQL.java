@@ -1,6 +1,7 @@
 package twitterapi;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +17,8 @@ public class ImportIntoSQL {
         String locationCountry = TwitterAPI.getCountryVar();
         String locationCity = TwitterAPI.getCityVar();
         String screenName = TwitterAPI.getScreenName();
+        String post = TwitterAPI.getPost();
+        Date date = TwitterAPI.getDate();
 
         // LOCATIE
         if (locationCountry != null && !locationCity.isEmpty()) {
@@ -27,6 +30,7 @@ public class ImportIntoSQL {
             locatieStmnt.setString(1, locationCountry);
             locatieStmnt.execute();
         }
+        System.out.println("LOCATIE GEMAAKT");
 
         // PERSOON
         PreparedStatement persoonStmnt = conn.prepareStatement("INSERT INTO persoon(Name, LID) VALUES(?, ?);");
@@ -35,13 +39,26 @@ public class ImportIntoSQL {
         // Haalt LID van persoon op.
         checkLID.setString(1, locationCity);
         ResultSet RSCheckLID = checkLID.executeQuery();
+        System.out.println("RSCHECKLID GEMAAKT");
 
         while (RSCheckLID.next()) {
-            int LID = RSCheckLID.getInt(1); 
+            int LID = RSCheckLID.getInt(1);
             System.out.println("==========" + LID + "==========");
+
+            // Maakt de query af en voert de query uit.
             persoonStmnt.setString(1, screenName);
             persoonStmnt.setInt(2, LID);
             persoonStmnt.execute();
+            System.out.println("PERSOON GEMAAKT");
         }
+
+        // POSTS
+        System.out.println("POST GEMAAKT");
+        PreparedStatement postStmnt = conn.prepareStatement("INSERT INTO posts(Post, Datum) VALUES(?, ?);");
+        //postStmnt.setInt(1, x);
+        postStmnt.setString(1, post);
+        postStmnt.setDate(2, date);
+        postStmnt.execute();
+        System.out.println("FUNCTIE KLAAR");
     }
 }

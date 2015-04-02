@@ -24,6 +24,8 @@ public class TwitterAPI {
     static String cityVar;
     static String countryVar;
     static String screenName;
+    static String post;
+    static Date date;
     
 
     public static void timeline() throws TwitterException, SQLException {
@@ -50,7 +52,12 @@ public class TwitterAPI {
                 locationCountry = "N/A";
             }
             //System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText() + " : Favorites: " + status.getFavoriteCount() + " : Retweets: " + status.getRetweetCount() + " : Gepost vanuit: " + locationCity);         
+            // Converteert de datum vanuit de twitter API naar een datum object dat SQL kan gebruiken.
+            java.util.Date utilDate = status.getCreatedAt();
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
             
+            date = sqlDate;
+            post = status.getText();
             screenName = status.getUser().getScreenName();
             try{
                 ImportIntoSQL.TwitterImport();
@@ -69,7 +76,7 @@ public class TwitterAPI {
             // Step 2: Establish the connection to the database. 
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (Exception e) {
-            System.err.println("Got an exception!");
+            System.err.println("Er kon geen database-connectie worden gemaakt.");
         }
         return conn;
     }
@@ -84,6 +91,14 @@ public class TwitterAPI {
     
     public static String getScreenName(){
         return screenName;
+    }
+    
+    public static String getPost(){
+        return post;
+    }
+    
+    public static Date getDate(){
+        return date;
     }
 
     public static void main(String[] args) throws TwitterException, SQLException {
