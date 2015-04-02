@@ -5,11 +5,17 @@
  */
 package teambootje;
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
- * @author kevin
+ * @author kevin en Roy
  */
 public class TwitterGui extends javax.swing.JFrame {
 
@@ -19,11 +25,32 @@ public class TwitterGui extends javax.swing.JFrame {
     public TwitterGui() {
         initComponents();
         setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
         
         //Create and set up the window.
         setTitle("SS Rotterdam Analyse || Get Twitter Data");
         ImageIcon icon = new ImageIcon("img/bootje.jpg");
         setIconImage(icon.getImage());
+        
+        // back BTN
+        JButton back = new JButton("Back");
+        add(back, BorderLayout.NORTH);
+        
+         back.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+         
+       // panel en Label
+       JPanel twit = new JPanel();
+       add(twit, BorderLayout.CENTER);
+       
+       JLabel TW = new JLabel("Uw Text hier"); 
+       twit.add(TW);
     }
 
     /**

@@ -36,6 +36,7 @@ public class ViewData extends javax.swing.JFrame {
         setIconImage(icon.getImage());
         setLayout(new BorderLayout());
         
+        // back btn
         JButton back = new JButton("Back");
         add(back, BorderLayout.NORTH);
         
@@ -47,6 +48,7 @@ public class ViewData extends javax.swing.JFrame {
             }
         });
         
+        // tabel
         String sql = "SELECT * FROM posts ORDER BY Datum";
         List<Object[]> list = new ArrayList<Object[]>();
         try{
@@ -62,15 +64,17 @@ public class ViewData extends javax.swing.JFrame {
           e.printStackTrace();
         }
         
+        String columnNames[] = {"PID", "DID", "AID", "Posts", "Datum"};
         Object[][] array = new Object[list.size()][];
         list.toArray(array);
-        Object columnNames[] = {"PID", "DID", "AID", "Posts", "Datum"};
         
         
+        //JPanel
         JPanel frame = new JPanel();
         add(frame, BorderLayout.CENTER);
         JTable table = new JTable(array,columnNames);
-        frame.add(table);
+        JScrollPane tableSP = new JScrollPane(table);
+        frame.add(tableSP);
         
         
         
