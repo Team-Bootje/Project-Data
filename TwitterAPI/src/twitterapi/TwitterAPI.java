@@ -19,6 +19,12 @@ public class TwitterAPI {
     // Database inloggegevens
     static final String USER = "root";
     static final String PASS = "";
+    
+    //variabelen
+    static String cityVar;
+    static String countryVar;
+    static String screenName;
+    
 
     public static void timeline() throws TwitterException, SQLException {
         Twitter twitter = TwitterFactory.getSingleton();      
@@ -33,45 +39,31 @@ public class TwitterAPI {
             String locationCity = null;
             String locationCountry = null;
             if (status.getPlace() != null) {
+                cityVar = status.getPlace().getName();
+                countryVar = status.getPlace().getCountry();
                 locationCity = status.getPlace().getName();
                 locationCountry = status.getPlace().getCountry();
             } else {
-                locationCity = "Niet_beschikbaar";
-                locationCountry = "Niet_beschikbaar";
+                countryVar = null;
+                cityVar = null;
+                locationCity = null;
+                locationCountry = null;
             }
-            System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText() + " : Favorites: " + status.getFavoriteCount() + " : Retweets: " + status.getRetweetCount() + " : Gepost vanuit: " + locationCity);
-            Connection conn = getConn();
+            System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText() + " : Favorites: " + status.getFavoriteCount() + " : Retweets: " + status.getRetweetCount() + " : Gepost vanuit: " + locationCity);         
             
-            // LOCATIE
-            PreparedStatement locatieStmnt = conn.prepareStatement("INSERT INTO locatie(Land, Stad) VALUES(?, ?);");
-            
-            locatieStmnt.setString(1, locationCountry);
-            locatieStmnt.setString(2, locationCity);
-            
-            if(locatieStmnt.execute()){
-                
+            screenName = status.getUser().getScreenName();
+            try{
+                ImportIntoSQL.TwitterImport();
             }
-            
-            // PERSOON
-            PreparedStatement persoonStmnt = conn.prepareStatement("INSERT INTO persoon(Name, LID) VALUES(?, ?);");
-            PreparedStatement checkLID = conn.prepareStatement("SELECT LID FROM locatie WHERE stad = ?");
-            
-            //haalt LID van persoon op
-            checkLID.setString(1, locationCity);
-            checkLID.execute();
-            ResultSet RSCheckLID = checkLID.executeQuery();
-            while (RSCheckLID.next()) {
-                int LID = RSCheckLID.getInt(1);
-                persoonStmnt.setString(1, status.getUser().getScreenName());
-                persoonStmnt.setInt(2, LID);
-                persoonStmnt.execute();
+            catch(SQLException e){
+                e.printStackTrace();
             }
         }
     }
 
     public static Connection getConn() {
         Connection conn = null;
-        try {
+        try { 
             // Step 1: Load the JDBC driver. 
             Class.forName("com.mysql.jdbc.Driver");
             // Step 2: Establish the connection to the database. 
@@ -80,6 +72,18 @@ public class TwitterAPI {
             System.err.println("Got an exception!");
         }
         return conn;
+    }
+    
+    public static String getCityVar(){
+        return cityVar;
+    }
+    
+    public static String getCountryVar(){
+        return countryVar;
+    }
+    
+    public static String getScreenName(){
+        return screenName;
     }
 
     public static void main(String[] args) throws TwitterException, SQLException {
