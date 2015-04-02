@@ -25,6 +25,7 @@ public class ViewData extends javax.swing.JFrame {
      */
     
     public static database db = new database();
+    private static final long serialVersionUID = 1L;
     public ViewData() {
         initComponents();
         setSize(600, 600);
@@ -51,31 +52,30 @@ public class ViewData extends javax.swing.JFrame {
         // tabel
         String sql = "SELECT * FROM posts ORDER BY Datum";
         List<Object[]> list = new ArrayList<Object[]>();
-        try{
-          ResultSet rs =db.runSql(sql);
-          while(rs.next()){
-              String[] row = new String[rs.getMetaData().getColumnCount()];
-              for (int i = 1; i < rs.getMetaData().getColumnCount(); i++){
-                row[i] = rs.getString(i);
-          }
-              list.add(row);
-          }
-        }catch (SQLException e){
-          e.printStackTrace();
+        try {
+            ResultSet rs = db.runSql(sql);
+            while (rs.next()) {
+                String[] row = new String[rs.getMetaData().getColumnCount()];
+                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                    row[i-1] = rs.getString(i);
+                }
+                list.add(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         
-        String columnNames[] = {"PID", "DID", "AID", "Posts", "Datum"};
         Object[][] array = new Object[list.size()][];
+        Object columnNames[] = {"PID", "DID", "AID", "Posts", "Datum"};
         list.toArray(array);
         
         
         //JPanel
         JPanel frame = new JPanel();
         add(frame, BorderLayout.CENTER);
-        JTable table = new JTable(array,columnNames);
-        JScrollPane tableSP = new JScrollPane(table);
-        frame.add(tableSP);
-        
+        JTable table = new JTable(array,columnNames); 
+        JScrollPane scroll = new JScrollPane(table);
+        frame.add(scroll);
         
         
         
