@@ -12,6 +12,7 @@ import facebook4j.Post;
 import facebook4j.ResponseList; 
 import facebook4j.conf.Configuration;
 import facebook4j.conf.ConfigurationBuilder;
+import facebook4j.internal.org.json.JSONObject;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -46,8 +47,10 @@ public class FacebookAPI {
         String searchResult = "Item : " + searchPost + "\n";
         StringBuilder searchMessage = new StringBuilder();
         ResponseList<Post> results = Facebook.getPosts(searchPost);
-        for (Post post : results) { System.out.println(post.getMessage());
-        searchMessage.append(post.getMessage() + "\n"); for (int j = 0; j < post.getComments().size(); j++) { 
+        for (Post post : results) { 
+            System.out.println(post.getMessage());
+            System.out.println(post.getCreatedTime());
+            searchMessage.append(post.getMessage() + "\n"); for (int j = 0; j < post.getComments().size(); j++) { 
             searchMessage.append(post.getComments().get(j).getFrom() .getName() + ", ");
             searchMessage.append(post.getComments().get(j).getMessage() + ", ");
             searchMessage.append(post.getComments().get(j).getCreatedTime() + ", ");
@@ -62,9 +65,9 @@ public static String getFacebookFeed(Facebook Facebook, String searchPost) throw
     StringBuilder searchMessage = new StringBuilder();
     ResponseList<Post> results = Facebook.getFeed(searchPost);
     for (Post post : results) { System.out.println(post.getMessage());
-    searchMessage.append(post.getFrom().getName() + ", "); searchMessage.append(post.getMessage() + ", ");
+    searchMessage.append(post.getFrom().getName() + ", "); 
+    searchMessage.append(post.getMessage() + ", ");
     searchMessage.append(post.getCreatedTime() + "\n"); }
     searchResult = searchResult + searchMessage.toString();
-    return searchResult; } // This method is used to create JSON object from data string public static String stringToJson(String data) { JsonConfig cfg = new JsonConfig(); try { JSONObject jsonObject = JSONObject.fromObject(data, cfg); System.out.println("JSON = " + jsonObject.toString()); } catch (Exception e) { e.printStackTrace(); } return "JSON Created"; } } - See more at: http://www.devx.com/Java/how-to-integrate-facebook-and-twitter-with-java-applications.html#sthash.j7rhjhmF.dpuf
-
+    return searchResult; }
 }
