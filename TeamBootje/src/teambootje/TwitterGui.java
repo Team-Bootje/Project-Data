@@ -8,10 +8,17 @@ package teambootje;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import static teambootje.TwitterAPI.timeline;
+import twitter4j.TwitterException;
 
 /**
  *
@@ -22,7 +29,7 @@ public class TwitterGui extends javax.swing.JFrame {
     /**
      * Creates new form TwitterGui
      */
-    public TwitterGui() {
+    public TwitterGui() throws SQLException, TwitterException {
         initComponents();
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
@@ -49,8 +56,21 @@ public class TwitterGui extends javax.swing.JFrame {
        JPanel twit = new JPanel();
        add(twit, BorderLayout.CENTER);
        
-       JLabel TW = new JLabel("Uw Text hier"); 
-       twit.add(TW);
+       TwitterAPI tapi = new TwitterAPI();
+       
+        JTextArea twapi = new JTextArea(TwitterAPI.timeline());
+        twit.add(twapi);
+        twapi.setSize(500, 500);
+        twapi.setLineWrap(true);
+        twapi.setWrapStyleWord(true);
+        twapi.setEditable(false);
+        
+        twit.add(twapi);
+        
+        JScrollPane sp = new JScrollPane(twapi);
+        add(sp);
+       
+       
     }
 
     /**
@@ -108,7 +128,14 @@ public class TwitterGui extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TwitterGui().setVisible(true);
+                try {
+                    TwitterGui tgui = new TwitterGui();
+                    tgui.setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(TwitterGui.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (TwitterException ex) {
+                    Logger.getLogger(TwitterGui.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
