@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package facebookapi;
+package teambootje;
 
 import facebook4j.Facebook; 
 import facebook4j.FacebookException; 
@@ -45,11 +45,10 @@ public class FacebookAPI {
   
         ResponseList<Post> results = Facebook.getPosts(searchPost);
         for (Post post : results) { 
-            System.out.println(post.getMessage());
-            System.out.println(post.getCreatedTime());
+          //  System.out.println(post.getMessage());
+          //  System.out.println(post.getCreatedTime());
             searchMessage.append(post.getMessage() + "\n"); for (int j = 0; j < post.getComments().size(); j++) { 
             searchMessage.append(post.getComments().get(j).getFrom() .getName() + ", ");
-            searchMessage.append(post.getPrivacy() + ", ");
             searchMessage.append(post.getComments().get(j).getMessage() + ", ");
             searchMessage.append(post.getComments().get(j).getCreatedTime() + ", ");
             searchMessage.append(post.getComments().get(j).getLikeCount() + "\n"); } } 
@@ -63,11 +62,12 @@ public static String getFacebookFeed(Facebook Facebook, String searchPost) throw
     String searchResult = "";
     StringBuilder searchMessage = new StringBuilder();
     ResponseList<Post> results = Facebook.getFeed(searchPost);
-    for (Post post : results) { System.out.println(post.getMessage());
-    searchMessage.append(post.getFrom().getName() + ", ");
-    searchMessage.append(post.getFrom().getName() + ", "); 
-    searchMessage.append(post.getMessage() + ", ");
-    searchMessage.append(post.getCreatedTime() + "\n"); }
+    for (Post post : results) { 
+        searchMessage.append("\n");
+        searchMessage.append(post.getFrom().getName() + ": ");
+        searchMessage.append(post.getMessage() + ". ");
+        searchMessage.append(post.getCreatedTime()); 
+        searchMessage.append("\n");}
     searchResult = searchResult + searchMessage.toString();
     return searchResult; }
 
