@@ -78,10 +78,13 @@ public class FacebookGui extends javax.swing.JFrame {
  
         JTextArea fbapi = new JTextArea(FacebookAPI.getFacebookFeed(Facebook, search));
         fb.add(fbapi);
-        fbapi.setSize(480, 480);
+        fbapi.setSize(500, 500);
         fbapi.setLineWrap(true);
         fbapi.setWrapStyleWord(true);
-  
+        fbapi.setEditable(false);
+        
+        JScrollPane sp = new JScrollPane(fbapi);
+        add(sp);
     }
 
     /**
