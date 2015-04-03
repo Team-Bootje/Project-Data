@@ -22,6 +22,8 @@ public class A2 extends javax.swing.JFrame {
     /**
      * Creates new form A2
      */
+    public static database db = new database();
+    private static final long serialVersionUID = 1L;
     public A2() {
         initComponents();
         setLocationRelativeTo(null);
@@ -49,8 +51,12 @@ public class A2 extends javax.swing.JFrame {
        JPanel ana = new JPanel();
        add(ana, BorderLayout.CENTER);
        
-       JLabel an2 = new JLabel("Uw Text hier"); 
-       ana.add(an2);
+       //table
+       String sql = "";
+       
+       //chart
+       JButton chart = new JButton("Chart");
+       add(chart, BorderLayout.SOUTH);
     }
 
     /**

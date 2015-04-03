@@ -6,12 +6,19 @@
 package teambootje;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.sql.*;
+import java.util.*;
+import javax.swing.*;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
+
 
 /**
  *
@@ -22,10 +29,13 @@ public class A1 extends javax.swing.JFrame {
     /**
      * Creates new form A1
      */
+    public static database db = new database();
+    private static final long serialVersionUID = 1L;
     public A1() {
         initComponents();
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
+        setSize(500, 500);
         
         //Create and set up the window.
         setTitle("SS Rotterdam Analyse || Analyse 1");
@@ -45,13 +55,65 @@ public class A1 extends javax.swing.JFrame {
             }
         });
          
-       // panel en Label
+       // panel
        JPanel ana = new JPanel();
        add(ana, BorderLayout.CENTER);
        
-       JLabel an1 = new JLabel("Uw Text hier"); 
-       ana.add(an1);
-    }
+       //tabel
+       String sql = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon GROUP BY geslacht";
+       List<Object[]> list = new ArrayList<Object[]>();
+       try {
+           ResultSet rs = db.runSql(sql);
+           while (rs.next()) {
+               String[] row = new String[rs.getMetaData().getColumnCount()];
+               for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                   row[i-1] = rs.getString(i);
+               }
+               list.add(row);
+           }
+       }catch (SQLException e){
+           JOptionPane.showMessageDialog(null, e);
+                }
+       
+       Object[][] array = new Object[list.size()][];
+       Object columnNames[] = {"Geslacht", "Aantal"};
+       list.toArray(array);
+       
+       JTable table = new JTable(array, columnNames);
+       JScrollPane scroll = new JScrollPane(table);
+       scroll.setPreferredSize(new Dimension(400, 400));
+       ana.add(scroll);
+       
+       //chart
+       JButton chart = new JButton("Chart");
+       add(chart, BorderLayout.SOUTH);
+       
+       
+       
+       chart.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+               //String male   = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'man' GROUP BY geslacht";
+               //String Female = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'vrouw' GROUP BY geslacht";
+                
+               DefaultPieDataset pieDataset = new DefaultPieDataset();
+               pieDataset.setValue("Man", new Integer(3));
+               pieDataset.setValue("vrouw", new Integer(2));
+               JFreeChart chart = ChartFactory.createPieChart3D("Aantal mannen en vrouwen", pieDataset, true, true, true);
+               PiePlot3D p = (PiePlot3D) chart.getPlot();
+               //p.setForegroundAlpha(TOP_ALIGNMENT);
+               ChartFrame pie = new ChartFrame("Aantal mannen en vrouwen", chart);
+               pie.setVisible(true);
+               pie.setSize(500,500);
+               pie.setLocationRelativeTo(null);
+               
+                
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+           }
 
     /**
      * This method is called from within the constructor to initialize the form.
