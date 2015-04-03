@@ -10,6 +10,7 @@ import facebook4j.FacebookException;
 import facebook4j.FacebookFactory;
 import facebook4j.Post; 
 import facebook4j.ResponseList; 
+import facebook4j.User;
 import facebook4j.conf.Configuration;
 import facebook4j.conf.ConfigurationBuilder;
 
@@ -26,7 +27,7 @@ public class FacebookAPI {
     configurationBuilder.setOAuthAppId("476059649213785"); 
     configurationBuilder.setOAuthAppSecret("88eacd3eec295028a3f56ca4b7cc69ef"); 
     configurationBuilder.setOAuthAccessToken("CAAGwZBUZAIhVkBAKTrnvgZConGF4l1ZAABE1AhC7e245J9s8LcbIdGmQzZAO4PcRgvkt2uHzW2hRdSp4UVQN6xDIz4wI32UsQbtBicQD2lD9PNEZBlgZBE9f0VwPtZAsumz1KwNOcoZCF2R7jc2wCPG1JRRyZCjzuQeQhQ4jlEeXh0LQI53jh24ZCvj5PVGPPpbKQYZD"); 
-    configurationBuilder.setOAuthPermissions("email, publish_stream, id, name, first_name, last_name, read_stream , generic"); 
+    configurationBuilder.setOAuthPermissions("email, publish_stream, id, name, first_name, last_name, read_stream , generic, user_birthday,user_location,user_hometown"); 
     configurationBuilder.setUseSSL(true); 
     configurationBuilder.setJSONStoreEnabled(true); 
 // Create configuration and get Facebook instance 
@@ -36,22 +37,22 @@ public class FacebookAPI {
      String searchPost = "ssRotterdam";
     String results = getFacebookPostes(Facebook, searchPost);
     
+    
     }
     
     
     public static String getFacebookPostes(Facebook Facebook, String searchPost) throws FacebookException { 
-        String searchResult = "Item : " + searchPost + "\n";
+        String searchResult = "\n";
         StringBuilder searchMessage = new StringBuilder();
   
         ResponseList<Post> results = Facebook.getPosts(searchPost);
         for (Post post : results) { 
-          //  System.out.println(post.getMessage());
-          //  System.out.println(post.getCreatedTime());
-            searchMessage.append(post.getMessage() + "\n"); for (int j = 0; j < post.getComments().size(); j++) { 
-            searchMessage.append(post.getComments().get(j).getFrom() .getName() + ", ");
-            searchMessage.append(post.getComments().get(j).getMessage() + ", ");
-            searchMessage.append(post.getComments().get(j).getCreatedTime() + ", ");
-            searchMessage.append(post.getComments().get(j).getLikeCount() + "\n"); } } 
+            searchMessage.append("\n");
+            searchMessage.append(post.getFrom().getName() + ": " + "\n");
+            searchMessage.append(post.getMessage() + ". " + "\n"); 
+            searchMessage.append(post.getCreatedTime() + ", ");
+            searchMessage.append("\n");} 
+        
         String feedString = getFacebookFeed(Facebook, searchPost);
         searchResult = searchResult + searchMessage.toString();
         searchResult = searchResult + feedString; 

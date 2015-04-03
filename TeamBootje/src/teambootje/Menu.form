@@ -25,7 +25,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="GB" alignment="0" max="32767" attributes="0"/>
@@ -48,12 +48,14 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="BD" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="Exit" alignment="1" max="32767" attributes="0"/>
-                              <Component id="GTD" alignment="0" max="32767" attributes="0"/>
-                              <Component id="GFD" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="BD" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="Exit" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="GTD" alignment="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
+                          <Component id="GFD" alignment="1" min="-2" pref="139" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -192,7 +194,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="WZK">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Waarom ze komen"/>
+        <Property name="text" type="java.lang.String" value="Rede van bezoek"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="WZKActionPerformed"/>
