@@ -8,6 +8,7 @@ package teambootje;
 import facebook4j.conf.ConfigurationBuilder;
 import java.sql.*;
 import teambootje.*;
+import twitter4j.GeoLocation;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
@@ -32,39 +33,22 @@ public class TwitterAPI {
     static String countryVar;
     static String screenName;
     static String post;
-    static Date date;
-    static Boolean off;
 
     public static String timeline() throws TwitterException, SQLException {
         Twitter twitter = TwitterFactory.getSingleton();
-        Query query = new Query("ssrotterdam");
-        //query.setSince("2015-03-30");
-       // query.setUntil("2015-04-04");
+        Query query = new Query("#ssRotterdam");
+        query.setSince("2015-03-30");
+        query.setUntil("2015-04-04");
         query.setCount(100);
         
 
         QueryResult result = twitter.search(query);
         for (Status status : result.getTweets()) {
-            String locationCity = null;
-            String locationCountry = null;
-            if (status.getPlace() != null) {
-                cityVar = status.getPlace().getName();
-                countryVar = status.getPlace().getCountry();
-                locationCity = status.getPlace().getName();
-                locationCountry = status.getPlace().getCountry();
-            } else {
-                countryVar = null;
-                cityVar = null;
-                locationCity = null;
-                locationCountry = null;
-            }
-
-             post = status.getText();
-            screenName = status.getUser().getScreenName();
-//            ImportIntoSQL.TwitterImport();
+            {System.out.println(status.getUser().getName() + ": " + status.getText() + ". ");}
+            screenName = status.getUser().getName();
+            post = status.getText();
         }
-        
-        return screenName + ": " + post;
+        return screenName + ": " + post + ". ";
     }
 
     public static Connection getConn() {
@@ -86,18 +70,6 @@ public class TwitterAPI {
 
     public static String getCountryVar() {
         return countryVar;
-    }
-
-    public static String getScreenName() {
-        return screenName;
-    }
-
-    public static String getPost() {
-        return post;
-    }
-
-    public static Date getDate() {
-        return date;
     }
 
     public static void main(String[] args) throws TwitterException, SQLException {
