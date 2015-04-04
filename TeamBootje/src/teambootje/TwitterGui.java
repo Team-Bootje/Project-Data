@@ -5,6 +5,7 @@
  */
 package teambootje;
 
+import facebook4j.conf.*;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,11 +14,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import static teambootje.TwitterAPI.timeline;
 import twitter4j.TwitterException;
 
 /**
@@ -58,6 +57,7 @@ public class TwitterGui extends javax.swing.JFrame {
        
        TwitterAPI tapi = new TwitterAPI();
        
+      
         JTextArea twapi = new JTextArea(TwitterAPI.timeline());
         twit.add(twapi);
         twapi.setSize(500, 500);
@@ -65,7 +65,7 @@ public class TwitterGui extends javax.swing.JFrame {
         twapi.setWrapStyleWord(true);
         twapi.setEditable(false);
         
-        twit.add(twapi);
+       // twit.add(twapi);
         
         JScrollPane sp = new JScrollPane(twapi);
         add(sp);

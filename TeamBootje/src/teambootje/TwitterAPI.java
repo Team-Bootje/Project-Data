@@ -5,6 +5,7 @@
  */
 package teambootje;
 
+import facebook4j.conf.ConfigurationBuilder;
 import java.sql.*;
 import teambootje.*;
 import twitter4j.Query;
@@ -32,14 +33,15 @@ public class TwitterAPI {
     static String screenName;
     static String post;
     static Date date;
+    static Boolean off;
 
     public static String timeline() throws TwitterException, SQLException {
         Twitter twitter = TwitterFactory.getSingleton();
         Query query = new Query("ssrotterdam");
+        //query.setSince("2015-03-30");
+       // query.setUntil("2015-04-04");
         query.setCount(100);
-        /**
-         ** setSince kan alleen tot 7 dagen terug worden gebruikt***
-         */
+        
 
         QueryResult result = twitter.search(query);
         for (Status status : result.getTweets()) {
@@ -56,18 +58,13 @@ public class TwitterAPI {
                 locationCity = null;
                 locationCountry = null;
             }
-            //System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText() + " : Favorites: " + status.getFavoriteCount() + " : Retweets: " + status.getRetweetCount() + " : Gepost vanuit: " + locationCity);         
-            // Converteert de datum vanuit de twitter API naar een datum object dat SQL kan gebruiken.
-            java.util.Date utilDate = status.getCreatedAt();
-            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-            date = sqlDate;
-            post = status.getText();
+             post = status.getText();
             screenName = status.getUser().getScreenName();
-            ImportIntoSQL.TwitterImport();
+//            ImportIntoSQL.TwitterImport();
         }
         
-        return post;
+        return screenName + ": " + post;
     }
 
     public static Connection getConn() {
