@@ -5,10 +5,7 @@
  */
 package teambootje;
 
-import facebook4j.conf.ConfigurationBuilder;
 import java.sql.*;
-import teambootje.*;
-import twitter4j.GeoLocation;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
@@ -33,6 +30,7 @@ public class TwitterAPI {
     static String countryVar;
     static String screenName;
     static String post;
+    static Date date;
 
     public static String timeline() throws TwitterException, SQLException {
         Twitter twitter = TwitterFactory.getSingleton();
@@ -47,8 +45,9 @@ public class TwitterAPI {
             {System.out.println(status.getUser().getName() + ": " + status.getText() + ". ");}
             screenName = status.getUser().getName();
             post = status.getText();
+            date = (Date) status.getCreatedAt();
         }
-        return screenName + ": " + post + ". ";
+        return screenName + ": " + post + ". " + " " + date;
     }
 
     public static Connection getConn() {
@@ -62,6 +61,18 @@ public class TwitterAPI {
             System.err.println("Er kon geen database-connectie worden gemaakt.");
         }
         return conn;
+    }
+    
+    public static String getScreenName() {
+        return screenName;
+    }
+    
+    public static String getPost() {
+        return post;
+    }
+    
+    public static Date getDate() {
+        return date;
     }
 
     public static String getCityVar() {
