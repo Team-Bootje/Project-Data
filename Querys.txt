@@ -1,3 +1,52 @@
-SELECT `Datum`, COUNT(*)
-FROM	posts
-GROUP BY `Datum`
+Hoeveelheid man/vrouw.
+SELECT persoon.geslacht, COUNT(*) 
+FROM persoon 
+GROUP BY persoon.geslacht;
+
+Laat zien hoeveel mensen een bepaalde leeftijd hebben.
+SELECT persoon.leeftijd, COUNT(*)
+FROM persoon
+GROUP BY persoon.leeftijd;
+
+Laat zien welke persoon van welke locatie komt.
+SELECT locatie.stad, locatie.land, persoon.name
+FROM locatie, persoon
+WHERE locatie.LID = persoon.LID
+GROUP BY locatie.stad;
+
+Laat zien hoeveel post er van een bepaalde locatie komen.
+SELECT locatie.land, locatie.stad, COUNT(posts.PID) 
+FROM persoon, locatie, posts 
+WHERE persoon.LID = locatie.LID 
+AND persoon.AID = posts.AID 
+GROUP BY locatie.land 
+ORDER BY COUNT(posts.PID);
+
+Hoeveel mensen behoren tot een bepaalde doelgroep.
+SELECT doelgroep.doelgroep, COUNT(*) 
+FROM doelgroep 
+GROUP BY doelgroep.doelgroep;
+
+Laat de posts van de doelgroepen zien, gesorteerd op doelgroep.
+SELECT doelgroep.doelgroep, posts.post
+FROM doelgroep, posts
+WHERE posts.DID = doelgroep.DID
+GROUP BY doelgroep.doelgroep;
+
+Laat nu de post van een specifieke doelgroep zien.
+SELECT doelgroep.doelgroep, posts.post
+FROM doelgroep, posts
+WHERE posts.DID = doelgroep.DID
+AND doelgroep.doelgroep = ".....";
+
+|-----------------|-----------------|--------------|
+V  Niet getest !  V                 V              V
+
+Welke tijdsperiode heeft de meeste posts.
+
+SELECT COUNT(posts.datum between '2014/07/01' AND '2014/12/31') AS najaar 2014
+, COUNT(posts.datum between '2015/01/01 AND 2015/06/31') AS voorjaar 2015
+FROM posts;
+
+
+
