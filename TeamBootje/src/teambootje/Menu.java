@@ -134,7 +134,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        WZK.setText("Rede van bezoek");
+        WZK.setText("Posts per doelgroep");
         WZK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 WZKActionPerformed(evt);

@@ -95,12 +95,15 @@ public class A1 extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
+               
+                
                //String male   = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'man' GROUP BY geslacht";
                //String Female = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'vrouw' GROUP BY geslacht";
                 
                DefaultPieDataset pieDataset = new DefaultPieDataset();
-               pieDataset.setValue("Man", new Integer(3));
-               pieDataset.setValue("vrouw", new Integer(2));
+               pieDataset.setValue("Niet vrijgegeven", new Integer(3));
+               pieDataset.setValue("Man", new Integer(0));
+               pieDataset.setValue("vrouw", new Integer(0));
                JFreeChart chart = ChartFactory.createPieChart3D("Aantal mannen en vrouwen", pieDataset, true, true, true);
                PiePlot3D p = (PiePlot3D) chart.getPlot();
                //p.setForegroundAlpha(TOP_ALIGNMENT);

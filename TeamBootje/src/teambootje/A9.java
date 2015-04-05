@@ -6,12 +6,26 @@
 package teambootje;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
+import static teambootje.A1.db;
 
 /**
  *
@@ -49,8 +63,63 @@ public class A9 extends javax.swing.JFrame {
        JPanel ana = new JPanel();
        add(ana, BorderLayout.CENTER);
        
-       JLabel an9 = new JLabel("Uw Text hier"); 
-       ana.add(an9);
+       //tabel
+       String sql = "SELECT persoon.Name, COUNT(post) AS Aantal FROM persoon, posts WHERE persoon.AID = posts.AID GROUP BY posts.Datum";
+       List<Object[]> list = new ArrayList<Object[]>();
+       try {
+           ResultSet rs = db.runSql(sql);
+           while (rs.next()) {
+               String[] row = new String[rs.getMetaData().getColumnCount()];
+               for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                   row[i-1] = rs.getString(i);
+               }
+               list.add(row);
+           }
+       }catch (SQLException e){
+           JOptionPane.showMessageDialog(null, e);
+                }
+       
+       Object[][] array = new Object[list.size()][];
+       Object columnNames[] = {"Naam", "Aantal"};
+       list.toArray(array);
+       
+       JTable table = new JTable(array, columnNames);
+       JScrollPane scroll = new JScrollPane(table);
+       scroll.setPreferredSize(new Dimension(400, 400));
+       ana.add(scroll);
+       
+       //chart
+       JButton chart = new JButton("Chart");
+       add(chart, BorderLayout.SOUTH);
+       
+       
+       
+       chart.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+               
+                
+               //String male   = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'man' GROUP BY geslacht";
+               //String Female = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'vrouw' GROUP BY geslacht";
+                
+               DefaultPieDataset pieDataset = new DefaultPieDataset();
+               pieDataset.setValue("RuudvandenBos", new Integer(1));
+               pieDataset.setValue("EdwindeKoninf1", new Integer(1));
+               pieDataset.setValue("Gerarddegraaf", new Integer(1));
+               JFreeChart chart = ChartFactory.createPieChart3D("Aantal posts per personen", pieDataset, true, true, true);
+               PiePlot3D p = (PiePlot3D) chart.getPlot();
+               //p.setForegroundAlpha(TOP_ALIGNMENT);
+               ChartFrame pie = new ChartFrame("Aantal posts per personen", chart);
+               pie.setVisible(true);
+               pie.setSize(500,500);
+               pie.setLocationRelativeTo(null);
+               
+                
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
     }
 
     /**
