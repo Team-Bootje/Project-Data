@@ -58,17 +58,17 @@ public class TwitterGui extends javax.swing.JFrame {
        TwitterAPI tapi = new TwitterAPI();
        
       
-        JTextArea twapi = new JTextArea(TwitterAPI.timeline());
-        twit.add(twapi);
-        twapi.setSize(500, 500);
-        twapi.setLineWrap(true);
-        twapi.setWrapStyleWord(true);
-        twapi.setEditable(false);
-        
+       JTextArea twapi = new JTextArea(TwitterAPI.timeline());
+       twit.add(twapi);
+       twapi.setSize(500, 500);
+       twapi.setLineWrap(true);
+       twapi.setWrapStyleWord(true);
+       twapi.setEditable(false);
+       
        // twit.add(twapi);
-        
-        JScrollPane sp = new JScrollPane(twapi);
-        add(sp);
+       
+       JScrollPane sp = new JScrollPane(twapi);
+       add(sp);
        
        
     }

@@ -6,12 +6,7 @@
 package teambootje;
 
 import java.sql.*;
-import twitter4j.Query;
-import twitter4j.QueryResult;
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
+import twitter4j.*;
 
 /**
  * @author Roy van den Heuvel
@@ -32,22 +27,38 @@ public class TwitterAPI {
     static String post;
     static Date date;
 
-    public static String timeline() throws TwitterException, SQLException {
+    public static void timeline() throws TwitterException, SQLException {
         Twitter twitter = TwitterFactory.getSingleton();
-        Query query = new Query("#ssRotterdam");
-        query.setSince("2015-03-30");
-        query.setUntil("2015-04-04");
+        Query query = new Query("ssrotterdam");
         query.setCount(100);
-        
+        /**
+         ** setSince kan alleen tot 7 dagen terug worden gebruikt***
+         */
 
         QueryResult result = twitter.search(query);
         for (Status status : result.getTweets()) {
-            {System.out.println(status.getUser().getName() + ": " + status.getText() + ". ");}
-            screenName = status.getUser().getName();
+            String locationCity = null;
+            String locationCountry = null;
+            if (status.getPlace() != null) {
+                cityVar = status.getPlace().getName();
+                countryVar = status.getPlace().getCountry();
+            } else {
+                countryVar = null;
+                cityVar = null;
+            }
+            
+            java.util.Date utilDate = status.getCreatedAt();
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
+            date = sqlDate;
             post = status.getText();
-            date = (Date) status.getCreatedAt();
+            screenName = status.getUser().getScreenName();
+            try {
+                ImportIntoSQL.TwitterImport();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        return screenName + ": " + post + ". " + " " + date;
     }
 
     public static Connection getConn() {
@@ -62,18 +73,6 @@ public class TwitterAPI {
         }
         return conn;
     }
-    
-    public static String getScreenName() {
-        return screenName;
-    }
-    
-    public static String getPost() {
-        return post;
-    }
-    
-    public static Date getDate() {
-        return date;
-    }
 
     public static String getCityVar() {
         return cityVar;
@@ -81,6 +80,18 @@ public class TwitterAPI {
 
     public static String getCountryVar() {
         return countryVar;
+    }
+
+    public static String getScreenName() {
+        return screenName;
+    }
+
+    public static String getPost() {
+        return post;
+    }
+
+    public static Date getDate() {
+        return date;
     }
 
     public static void main(String[] args) throws TwitterException, SQLException {
