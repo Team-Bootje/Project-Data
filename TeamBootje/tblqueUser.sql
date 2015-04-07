@@ -7,4 +7,4 @@ CREATE TABLE IF NOT EXISTS `Users`
 );
 
 
-INSERT INTO `teambootje`.`users` (`UID`, `Username`, `Password`, `Name`) VALUES (NULL, 'User', 'User', 'User');
+INSERT INTO `teambootje`.`users` (`Username`, `Password`, `Name`) VALUES ('User', 'User', 'User');
