@@ -42,16 +42,11 @@ public class TwitterAPI {
             if (status.getPlace() != null) {
                 cityVar = status.getPlace().getName();
                 countryVar = status.getPlace().getCountry();
-                locationCity = status.getPlace().getName();
-                locationCountry = status.getPlace().getCountry();
             } else {
                 countryVar = null;
                 cityVar = null;
-                locationCity = null;
-                locationCountry = null;
             }
-            //System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText() + " : Favorites: " + status.getFavoriteCount() + " : Retweets: " + status.getRetweetCount() + " : Gepost vanuit: " + locationCity);         
-            // Converteert de datum vanuit de twitter API naar een datum object dat SQL kan gebruiken.
+            
             java.util.Date utilDate = status.getCreatedAt();
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
