@@ -239,6 +239,7 @@ public class Menu extends javax.swing.JFrame {
        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                    TwitterAPI.timeline();
                     new TwitterGui().setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
