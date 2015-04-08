@@ -6,12 +6,14 @@
 package teambootje;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -32,20 +34,57 @@ public class A10 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage(icon.getImage());
         setLayout(new BorderLayout());
-        setSize(600,600);
+        setSize(700,750);
         setResizable(false);
         
         JButton back = new JButton("Back");
         add(back, BorderLayout.NORTH);
         
+        
         JPanel readme = new JPanel();
-        add(readme, BorderLayout.CENTER);
+        JScrollPane scroll = new JScrollPane(readme);
+        scroll.setPreferredSize(new Dimension(400, 400));
+        add(scroll, BorderLayout.CENTER);
         JLabel read = new JLabel(
                 "<html>"
                         + "<h1 style=\"text-align: center\">Readme</h1>"
                         + "Dit programma is Speciaal gemaak voor analyse voor het gebouw/schip De SSRotterdam.<br>"
-                        + ""
-                        + "<br>Gemaakt door:<br> Johan Bos,<br> Kevin Verweij,<br> Roy van den Heuvel, <br> Steven van der Stel"
+                        + "<br>"
+                        + "Get Twitter / Facebook Data:<br>"
+                        + "De 'Get Twitter / Facebook Data' optie doet eigenlijk wat het zegt, het haalt posts van Twitter & Facebook binnen.<br>"
+                        + "Behalve de posts worden ook de persoons informatie binnen gehaald.<br>"
+                        + "Alle binnengehaalde informatie wordt vervolgens achter elkaar geplaatst en getoond en in de database geplaats.<br>"
+                        + "<br>"
+                        + "De centrale knoppen voeren allemaal een analyse over de bestaande data uit.<br>"
+                        + "Wanneer u op de knop drukt wordt de analyse uitgevoerd en wordt er een overzicht van de data zichtbaar.<br>"
+                        + "Vervolgens heeft u 2 opties, Back of Chart.<br>"
+                        + "Met de Back knop gaat u terug naar het hoofdmenu.<br>"
+                        + "Als u op Chart klikt wordt de data in een grafiek gezet voor een visueel duidelijker overzicht.<br>"
+                        + "Het overzicht met de grafiek kunt u vervolgens sluiten door op het kruisje te klikken.<br>"
+                        + "<br>"
+                        + "Geslacht bezoeker:<br>"
+                        + "Laat zien hoeveel van de mensen man of vrouw zijn.<br>"
+                        + "Welk seizoen:<br>"
+                        + "Geeft een overzicht van op welke datum het meest / minst wordt gepost.<br>"
+                        + "Posts per locatie:<br>"
+                        + "Uit welke stad komen de meeste / minste posts.<br>"
+                        + "Positieve posts:<br>"
+                        + "-<br>"
+                        + "Leeftijd bezoekers:<br>"
+                        + "Overzicht van hoe oud de bezoekers zijn.<br>"
+                        + "Waar bezoeker vandaan komt:<br>"
+                        + "Laat niet zien hoeveel posts er per locatie zijn, maar waar de personen in de database vandaan komen.<br>"
+                        + "Doelgroep:<br>"
+                        + "Hoeveel mensen behoren tot een bepaalde doelgroep.<br>"
+                        + "Posts per doelgroep:<br>"
+                        + "Laat alle posts zien gesorteerd op doelgroep.<br>"
+                        + "Meeste berichten:<br>"
+                        + "Laat zien hoeveel posts een persoon geplaatst heeft.<br>"
+                        + "<br>"
+                        + "Vervolgens is er de Bekijk Data knop.<br>"
+                        + "Dit brengt u naar een overzicht waar alle posts staan en wanneer deze zijn geplaatst.<br>"
+                        + "<br>"
+                        + "Gemaakt door:<br> Johan Bos,<br> Kevin Verweij,<br> Roy van den Heuvel, <br> Steven van der Stel"
              + "</html>"
         );
         readme.add(read);
@@ -55,7 +94,7 @@ public class A10 extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
     }
