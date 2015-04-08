@@ -66,14 +66,47 @@ public class A3 extends javax.swing.JFrame {
        //tabel
        String sql = "SELECT locatie.land, locatie.stad, COUNT(posts.PID) AS Aantal FROM persoon, locatie, posts WHERE persoon.LID = locatie.LID AND persoon.AID = posts.AID GROUP BY locatie.land ORDER BY count(posts.PID)";
        List<Object[]> list = new ArrayList<Object[]>();
+       ResultSet rs = null;
        try {
-           ResultSet rs = db.runSql(sql);
+           rs = db.runSql(sql);
            while (rs.next()) {
+               String land = rs.getString("locatie.land");
+               String stad = rs.getString("locatie.stad");
+               int aantal = rs.getInt("Aantal");
                String[] row = new String[rs.getMetaData().getColumnCount()];
                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
                    row[i-1] = rs.getString(i);
                }
                list.add(row);
+               
+               //chart
+       JButton chart = new JButton("Chart");
+       add(chart, BorderLayout.SOUTH);
+       
+       
+       
+       chart.addActionListener(new ActionListener()
+        {
+            String l1 = land;
+            String s1 = stad;
+            int a1 = aantal;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               DefaultPieDataset pieDataset = new DefaultPieDataset();
+               pieDataset.setValue(s1, a1);
+               
+               JFreeChart chart = ChartFactory.createPieChart3D("Aantal Posts per locatie", pieDataset, true, true, true);
+               PiePlot3D p = (PiePlot3D) chart.getPlot();
+               //p.setForegroundAlpha(TOP_ALIGNMENT);
+               ChartFrame pie = new ChartFrame("Aantal Posts per locatie", chart);
+               pie.setVisible(true);
+               pie.setSize(500,500);
+               pie.setLocationRelativeTo(null);
+               
+                
+              //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
            }
        }catch (SQLException e){
            JOptionPane.showMessageDialog(null, e);
@@ -88,38 +121,7 @@ public class A3 extends javax.swing.JFrame {
        scroll.setPreferredSize(new Dimension(400, 400));
        ana.add(scroll);
        
-       //chart
-       JButton chart = new JButton("Chart");
-       add(chart, BorderLayout.SOUTH);
        
-       
-       
-       chart.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-               
-                
-               //String male   = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'man' GROUP BY geslacht";
-               //String Female = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'vrouw' GROUP BY geslacht";
-                
-               DefaultPieDataset pieDataset = new DefaultPieDataset();
-               pieDataset.setValue("Bergen op Zoom", new Integer(5));
-               pieDataset.setValue("Niet Vrijgegeven", new Integer(26));
-               
-               JFreeChart chart = ChartFactory.createPieChart3D("Aantal Posts per locatie", pieDataset, true, true, true);
-               PiePlot3D p = (PiePlot3D) chart.getPlot();
-               //p.setForegroundAlpha(TOP_ALIGNMENT);
-               ChartFrame pie = new ChartFrame("Aantal Posts per locatie", chart);
-               pie.setVisible(true);
-               pie.setSize(500,500);
-               pie.setLocationRelativeTo(null);
-               
-                
-              //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
     }
 
     /**

@@ -68,14 +68,66 @@ public class A2 extends javax.swing.JFrame {
        //tabel
        String sql = "SELECT Datum, COUNT(*) AS Aantal FROM posts GROUP BY Datum";
        List<Object[]> list = new ArrayList<Object[]>();
+       ResultSet rs = null;
        try {
-           ResultSet rs = db.runSql(sql);
+           rs = db.runSql(sql);
            while (rs.next()) {
+               String datum = rs.getString("Datum");
+               int aantal = rs.getInt("Aantal");
                String[] row = new String[rs.getMetaData().getColumnCount()];
                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
                    row[i-1] = rs.getString(i);
                }
-               list.add(row);
+               list.add(row);        
+                   //chart
+       JButton chart = new JButton("Chart");
+       add(chart, BorderLayout.SOUTH);
+       
+       
+       
+       chart.addActionListener(new ActionListener()
+        {
+            String dat = datum;
+            int a1 = aantal;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            
+               DefaultPieDataset pieDataset = new DefaultPieDataset();
+               pieDataset.setValue(dat, a1);
+               pieDataset.setValue("2015-04-06", new Integer(5));
+               pieDataset.setValue("2015-04-05", new Integer(5));
+               pieDataset.setValue("2015-04-04", new Integer(14));
+               pieDataset.setValue("2015-04-03", new Integer(4));
+               pieDataset.setValue("2015-04-02", new Integer(1));
+               pieDataset.setValue("2015-04-01", new Integer(32));
+               pieDataset.setValue("2015-03-31", new Integer(32));
+               pieDataset.setValue("2015-03-30", new Integer(9));
+               pieDataset.setValue("2015-03-29", new Integer(4));
+               pieDataset.setValue("2015-03-28", new Integer(1));
+               pieDataset.setValue("2015-03-27", new Integer(3));
+               pieDataset.setValue("2015-03-26", new Integer(6));
+               pieDataset.setValue("2015-03-25", new Integer(1));
+               pieDataset.setValue("2015-03-24", new Integer(1));
+               pieDataset.setValue("2015-03-23", new Integer(1));
+               pieDataset.setValue("2015-03-22", new Integer(1));
+               pieDataset.setValue("2015-03-21", new Integer(1));
+               pieDataset.setValue("2015-03-20", new Integer(1));
+               pieDataset.setValue("2015-03-19", new Integer(1));
+               pieDataset.setValue("2015-03-18", new Integer(2));
+               pieDataset.setValue("2015-03-17", new Integer(1));
+               JFreeChart chart = ChartFactory.createPieChart3D("Aantal Posts per datum", pieDataset, true, true, true);
+               PiePlot3D p = (PiePlot3D) chart.getPlot();
+               //p.setForegroundAlpha(TOP_ALIGNMENT);
+               ChartFrame pie = new ChartFrame("Aantal Posts per datum", chart);
+               pie.setVisible(true);
+               pie.setSize(500,500);
+               pie.setLocationRelativeTo(null);
+               
+                
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+               
            }
        }catch (SQLException e){
            JOptionPane.showMessageDialog(null, e);
@@ -90,46 +142,7 @@ public class A2 extends javax.swing.JFrame {
        scroll.setPreferredSize(new Dimension(400, 400));
        ana.add(scroll);
        
-       //chart
-       JButton chart = new JButton("Chart");
-       add(chart, BorderLayout.SOUTH);
        
-       
-       
-       chart.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-               
-                
-               //String male   = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'man' GROUP BY geslacht";
-               //String Female = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'vrouw' GROUP BY geslacht";
-                
-               DefaultPieDataset pieDataset = new DefaultPieDataset();
-               pieDataset.setValue("2015-03-26", new Integer(5));
-               pieDataset.setValue("2015-03-27", new Integer(2));
-               pieDataset.setValue("2015-03-29", new Integer(3));
-               pieDataset.setValue("2015-03-30", new Integer(8));
-               pieDataset.setValue("2015-03-31", new Integer(45));
-               pieDataset.setValue("2015-04-01", new Integer(31));
-               pieDataset.setValue("2015-04-03", new Integer(2));
-               pieDataset.setValue("2015-04-04", new Integer(12));
-               pieDataset.setValue("2015-04-05", new Integer(4));
-               pieDataset.setValue("2015-04-06", new Integer(4));
-               pieDataset.setValue("2015-04-07", new Integer(18));
-               JFreeChart chart = ChartFactory.createPieChart3D("Aantal Posts per datum", pieDataset, true, true, true);
-               PiePlot3D p = (PiePlot3D) chart.getPlot();
-               //p.setForegroundAlpha(TOP_ALIGNMENT);
-               ChartFrame pie = new ChartFrame("Aantal Posts per datum", chart);
-               pie.setVisible(true);
-               pie.setSize(500,500);
-               pie.setLocationRelativeTo(null);
-               
-                
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
     }
 
     /**

@@ -66,29 +66,19 @@ public class A5 extends javax.swing.JFrame {
        //tabel
        String sql = "SELECT Leeftijd, COUNT(*) AS Aantal FROM persoon GROUP BY Leeftijd";
        List<Object[]> list = new ArrayList<Object[]>();
+       ResultSet rs = null;
        try {
-           ResultSet rs = db.runSql(sql);
+           rs = db.runSql(sql);
            while (rs.next()) {
+               String age = rs.getString("Leeftijd");
+               int aantal = rs.getInt("Aantal");
                String[] row = new String[rs.getMetaData().getColumnCount()];
                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
                    row[i-1] = rs.getString(i);
                }
                list.add(row);
-           }
-       }catch (SQLException e){
-           JOptionPane.showMessageDialog(null, e);
-                }
-       
-       Object[][] array = new Object[list.size()][];
-       Object columnNames[] = {"Leeftijd", "Aantal"};
-       list.toArray(array);
-       
-       JTable table = new JTable(array, columnNames);
-       JScrollPane scroll = new JScrollPane(table);
-       scroll.setPreferredSize(new Dimension(400, 400));
-       ana.add(scroll);
-       
-       //chart
+               
+               //chart
        JButton chart = new JButton("Chart");
        add(chart, BorderLayout.SOUTH);
        
@@ -96,16 +86,13 @@ public class A5 extends javax.swing.JFrame {
        
        chart.addActionListener(new ActionListener()
         {
+            String leeftijd = age;
+            int a1 = aantal;
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-               
-                
-               //String male   = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'man' GROUP BY geslacht";
-               //String Female = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'vrouw' GROUP BY geslacht";
-                
+ 
                DefaultPieDataset pieDataset = new DefaultPieDataset();
-               pieDataset.setValue("Niet vrijgegeven", new Integer(52));
+               pieDataset.setValue("Niet vrijgegeven", a1);
                
                JFreeChart chart = ChartFactory.createPieChart3D("Aantal mensen per leeftijd", pieDataset, true, true, true);
                PiePlot3D p = (PiePlot3D) chart.getPlot();
@@ -119,6 +106,19 @@ public class A5 extends javax.swing.JFrame {
                // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
+           }
+       }catch (SQLException e){
+           JOptionPane.showMessageDialog(null, e);
+                }
+       
+       Object[][] array = new Object[list.size()][];
+       Object columnNames[] = {"Leeftijd", "Aantal"};
+       list.toArray(array);
+       
+       JTable table = new JTable(array, columnNames);
+       JScrollPane scroll = new JScrollPane(table);
+       scroll.setPreferredSize(new Dimension(400, 400));
+       ana.add(scroll);
     }
 
     /**

@@ -26,23 +26,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="GB" alignment="0" max="32767" attributes="0"/>
-                          <Component id="WBVK" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="DG" max="32767" attributes="0"/>
-                          <Component id="WS" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="NP" max="32767" attributes="0"/>
-                          <Component id="WZK" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
@@ -54,21 +38,37 @@
                           </Group>
                           <Component id="GFD" alignment="1" min="-2" pref="139" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
+                      <Component id="Empty" min="-2" pref="121" max="-2" attributes="0"/>
                   </Group>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="PP" max="32767" attributes="0"/>
-                          <Component id="MB" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="GB" alignment="0" max="32767" attributes="0"/>
+                          <Component id="WBVK" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="LB" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="DG" max="32767" attributes="0"/>
+                          <Component id="WS" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="NP" pref="156" max="32767" attributes="0"/>
+                          <Component id="WZK" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="MB" min="-2" max="-2" attributes="0"/>
+                          <Component id="LB" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="Empty" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
               </Group>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="195" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -84,12 +84,13 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="GFD" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="GB" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="WS" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="NP" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="PP" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="LB" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -99,7 +100,7 @@
                   <Component id="WZK" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="MB" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="39" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="BD" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="Exit" min="-2" max="-2" attributes="0"/>
@@ -157,14 +158,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NPActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="PP">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Positive post"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PPActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="LB">
       <Properties>
         <Property name="text" type="java.lang.String" value="Leeftijd bezoekers"/>
@@ -220,6 +213,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BDActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Uit te voeren analyses:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

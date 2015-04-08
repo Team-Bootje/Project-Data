@@ -64,16 +64,99 @@ public class A9 extends javax.swing.JFrame {
        add(ana, BorderLayout.CENTER);
        
        //tabel
-       String sql = "SELECT persoon.Name, COUNT(post) AS Aantal FROM persoon, posts WHERE persoon.AID = posts.AID GROUP BY posts.Datum";
+       String sql = "SELECT persoon.Name, COUNT(post) AS Aantal FROM persoon, posts WHERE persoon.AID = posts.AID GROUP BY persoon.Name";
        List<Object[]> list = new ArrayList<Object[]>();
+       ResultSet rs = null;
        try {
-           ResultSet rs = db.runSql(sql);
+           rs = db.runSql(sql);
            while (rs.next()) {
+               String name = rs.getString("persoon.Name");
+               int amount = rs.getInt("Aantal");
                String[] row = new String[rs.getMetaData().getColumnCount()];
                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
                    row[i-1] = rs.getString(i);
                }
                list.add(row);
+               
+               //chart
+       JButton chart = new JButton("Chart");
+       add(chart, BorderLayout.SOUTH);
+       
+       
+       
+       chart.addActionListener(new ActionListener()
+        {
+            String n1 = name;
+            int a1 = amount;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               DefaultPieDataset pieDataset = new DefaultPieDataset();
+               pieDataset.setValue(n1, a1);
+               pieDataset.setValue("WestCordHotels", new Integer(1));
+               pieDataset.setValue("Voetbalr", new Integer(2));
+               pieDataset.setValue("VeraBauman", new Integer(1));
+               pieDataset.setValue("TonWesselink", new Integer(2));
+               pieDataset.setValue("Stoomschip Rotterdam", new Integer(25));
+               pieDataset.setValue("shirleys86", new Integer(2));
+               pieDataset.setValue("SevereWeather_N", new Integer(2));
+               pieDataset.setValue("SalvatoreOrtisi", new Integer(4));
+               pieDataset.setValue("RuudvEck", new Integer(2));
+               pieDataset.setValue("RuudvandenBos", new Integer(1));
+               pieDataset.setValue("Roffa85", new Integer(1));
+               pieDataset.setValue("RichardPh0t0", new Integer(2));
+               pieDataset.setValue("RebekkaKadijk", new Integer(2));
+               pieDataset.setValue("ray_rademaker", new Integer(6));
+               pieDataset.setValue("PoushNL", new Integer(1));
+               pieDataset.setValue("popupsquare", new Integer(2));
+               pieDataset.setValue("Plan_78", new Integer(3));
+               pieDataset.setValue("Petrahoogenboom", new Integer(1));
+               pieDataset.setValue("PatriciaBenard", new Integer(2));
+               pieDataset.setValue("OVKatendrecht", new Integer(2));
+               pieDataset.setValue("OdileHemmen", new Integer(2));
+               pieDataset.setValue("NLMaritiem", new Integer(2));
+               pieDataset.setValue("Nellyvdvlies", new Integer(1));
+               pieDataset.setValue("meerkatting", new Integer(2));
+               pieDataset.setValue("MeerkatsNow", new Integer(2));
+               pieDataset.setValue("marygoossens1", new Integer(1));
+               pieDataset.setValue("MarjoleinNagel", new Integer(1));
+               pieDataset.setValue("MaaikeMaasdijk", new Integer(1));
+               pieDataset.setValue("KidsErOpUit", new Integer(2));
+               pieDataset.setValue("Katendrechtnr1", new Integer(25));
+               pieDataset.setValue("jpsoree", new Integer(2));
+               pieDataset.setValue("JolandaBolscher", new Integer(2));
+               pieDataset.setValue("jes4life", new Integer(1));
+               pieDataset.setValue("JaccoScheer", new Integer(1));
+               pieDataset.setValue("GwNpop", new Integer(2));
+               pieDataset.setValue("Gerarddegraaff", new Integer(1));
+               pieDataset.setValue("FR12Patrick", new Integer(3));
+               pieDataset.setValue("FlorentinaNow", new Integer(1));
+               pieDataset.setValue("FIVBWorldChamps", new Integer(2));
+               pieDataset.setValue("FIVBVolleyball", new Integer(2));
+               pieDataset.setValue("FeestdjNik", new Integer(1));
+               pieDataset.setValue("ensanne", new Integer(1));
+               pieDataset.setValue("elsekramer", new Integer(1));
+               pieDataset.setValue("EelcoBeijl", new Integer(1));
+               pieDataset.setValue("EdwindeKoning1", new Integer(2));
+               pieDataset.setValue("DMiddelman", new Integer(3));
+               pieDataset.setValue("de_rotterdam", new Integer(2));
+               pieDataset.setValue("CvanAdrighem", new Integer(2));
+               pieDataset.setValue("carolinedejager", new Integer(1));
+               pieDataset.setValue("CaatVanEnst", new Integer(1));
+               pieDataset.setValue("BotlekBusiness", new Integer(2));
+               pieDataset.setValue("AnneWallisDeVri", new Integer(2));
+               pieDataset.setValue("010byday", new Integer(4));
+               JFreeChart chart = ChartFactory.createPieChart3D("Aantal posts per personen", pieDataset, true, true, true);
+               PiePlot3D p = (PiePlot3D) chart.getPlot();
+               //p.setForegroundAlpha(TOP_ALIGNMENT);
+               ChartFrame pie = new ChartFrame("Aantal posts per personen", chart);
+               pie.setVisible(true);
+               pie.setSize(500,500);
+               pie.setLocationRelativeTo(null);
+               
+                
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
            }
        }catch (SQLException e){
            JOptionPane.showMessageDialog(null, e);
@@ -88,45 +171,7 @@ public class A9 extends javax.swing.JFrame {
        scroll.setPreferredSize(new Dimension(400, 400));
        ana.add(scroll);
        
-       //chart
-       JButton chart = new JButton("Chart");
-       add(chart, BorderLayout.SOUTH);
        
-       
-       
-       chart.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-               
-                
-               //String male   = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'man' GROUP BY geslacht";
-               //String Female = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'vrouw' GROUP BY geslacht";
-                
-               DefaultPieDataset pieDataset = new DefaultPieDataset();
-               pieDataset.setValue("CaatVanEnst", new Integer(5));
-               pieDataset.setValue("Gerarddegraaff", new Integer(2));
-               pieDataset.setValue("FeestdjNik", new Integer(3));
-               pieDataset.setValue("010byday", new Integer(39));
-               pieDataset.setValue("CvanAdrighem", new Integer(45));
-               pieDataset.setValue("OVKatendrecht", new Integer(2));
-               pieDataset.setValue("BotlekBusiness", new Integer(12));
-               pieDataset.setValue("MeerkatsNow", new Integer(4));
-               pieDataset.setValue("JolandaBolscher", new Integer(4));
-               pieDataset.setValue("AnneWallisDeVri", new Integer(18));
-               JFreeChart chart = ChartFactory.createPieChart3D("Aantal posts per personen", pieDataset, true, true, true);
-               PiePlot3D p = (PiePlot3D) chart.getPlot();
-               //p.setForegroundAlpha(TOP_ALIGNMENT);
-               ChartFrame pie = new ChartFrame("Aantal posts per personen", chart);
-               pie.setVisible(true);
-               pie.setSize(500,500);
-               pie.setLocationRelativeTo(null);
-               
-                
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
     }
 
     /**
