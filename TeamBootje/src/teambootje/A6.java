@@ -108,6 +108,7 @@ public class A6 extends javax.swing.JFrame {
                pieDataset.setValue("Rotterdam", new Integer(1));
                pieDataset.setValue("Bergen op zoom", new Integer(1));
                pieDataset.setValue("Veenendaal", new Integer(1));
+               pieDataset.setValue("Niet vrijgegeven", new Integer(1));
                JFreeChart chart = ChartFactory.createPieChart3D("Waar komen bezoekers vandaan", pieDataset, true, true, true);
                PiePlot3D p = (PiePlot3D) chart.getPlot();
                //p.setForegroundAlpha(TOP_ALIGNMENT);

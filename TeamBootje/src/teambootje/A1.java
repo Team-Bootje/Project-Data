@@ -101,7 +101,7 @@ public class A1 extends javax.swing.JFrame {
                //String Female = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'vrouw' GROUP BY geslacht";
                 
                DefaultPieDataset pieDataset = new DefaultPieDataset();
-               pieDataset.setValue("Niet vrijgegeven", new Integer(3));
+               pieDataset.setValue("Niet vrijgegeven", new Integer(52));
                pieDataset.setValue("Man", new Integer(0));
                pieDataset.setValue("vrouw", new Integer(0));
                JFreeChart chart = ChartFactory.createPieChart3D("Aantal mannen en vrouwen", pieDataset, true, true, true);

@@ -107,10 +107,17 @@ public class A2 extends javax.swing.JFrame {
                //String Female = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'vrouw' GROUP BY geslacht";
                 
                DefaultPieDataset pieDataset = new DefaultPieDataset();
-               pieDataset.setValue("2012-11-29", new Integer(1));
-               pieDataset.setValue("2014-01-13", new Integer(1));
-               pieDataset.setValue("2014-09-27", new Integer(1));
-               pieDataset.setValue("2015-03-17", new Integer(2));
+               pieDataset.setValue("2015-03-26", new Integer(5));
+               pieDataset.setValue("2015-03-27", new Integer(2));
+               pieDataset.setValue("2015-03-29", new Integer(3));
+               pieDataset.setValue("2015-03-30", new Integer(8));
+               pieDataset.setValue("2015-03-31", new Integer(45));
+               pieDataset.setValue("2015-04-01", new Integer(31));
+               pieDataset.setValue("2015-04-03", new Integer(2));
+               pieDataset.setValue("2015-04-04", new Integer(12));
+               pieDataset.setValue("2015-04-05", new Integer(4));
+               pieDataset.setValue("2015-04-06", new Integer(4));
+               pieDataset.setValue("2015-04-07", new Integer(18));
                JFreeChart chart = ChartFactory.createPieChart3D("Aantal Posts per datum", pieDataset, true, true, true);
                PiePlot3D p = (PiePlot3D) chart.getPlot();
                //p.setForegroundAlpha(TOP_ALIGNMENT);
