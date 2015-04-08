@@ -56,7 +56,7 @@ public class FacebookAPI {
         ResponseList<Post> results = Facebook.getPosts(searchPost);
         for (Post post : results) {
             facebookPost = post.getMessage();
-            screenName = post.getName();
+            screenName = post.getFrom().getName();
             if (post.getPlace() != null) {
                 locationCity = post.getPlace().getLocation().getCity();
                 locationCountry = post.getPlace().getLocation().getCountry();
