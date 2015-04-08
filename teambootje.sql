@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.2.11
 -- http://www.phpmyadmin.net
 --
@@ -139,6 +139,17 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `Post` varchar(255) NOT NULL,
   `Datum` date NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `Users`
+(
+	 `UID`	 	INT(11)			PRIMARY KEY
+	,`Username`	VARCHAR(100)		NOT NULL
+	,`Password`	VARCHAR(100)		NOT NULL
+	,`Name`		VARCHAR(45)
+);
+
+
+INSERT INTO `teambootje`.`users` (`Username`, `Password`, `Name`) VALUES ('User', 'User', 'User');
 
 --
 -- Gegevens worden geëxporteerd voor tabel `posts`
