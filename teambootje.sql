@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `doelgroep` (
 `DID` int(11) NOT NULL,
-  `Doelgroep` varchar(45) DEFAULT NULL,
-  `Redebezoek` varchar(45) DEFAULT NULL
+  `Doelgroep` varchar(255) DEFAULT NULL,
+  `Redebezoek` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `locatie` (
 `LID` int(11) NOT NULL,
   `Land` varchar(255) NOT NULL,
   `Stad` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `locatie`
@@ -61,11 +61,11 @@ INSERT INTO `locatie` (`LID`, `Land`, `Stad`) VALUES
 
 CREATE TABLE IF NOT EXISTS `persoon` (
 `AID` int(11) NOT NULL,
-  `Name` varchar(45) NOT NULL,
+  `Name` TEXT NOT NULL,
   `Leeftijd` int(3) DEFAULT NULL,
   `Geslacht` varchar(5) DEFAULT NULL,
   `LID` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `persoon`
@@ -135,9 +135,9 @@ CREATE TABLE IF NOT EXISTS `posts` (
 `PID` int(11) NOT NULL,
   `DID` int(11) DEFAULT NULL,
   `AID` int(11) NOT NULL,
-  `Post` varchar(255) NOT NULL,
+  `Post` TEXT NOT NULL,
   `Datum` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `Users`
 (
@@ -270,7 +270,7 @@ ALTER TABLE `locatie`
 -- Indexen voor tabel `persoon`
 --
 ALTER TABLE `persoon`
- ADD PRIMARY KEY (`AID`), ADD UNIQUE KEY `Name` (`Name`), ADD KEY `LID` (`LID`);
+ ADD PRIMARY KEY (`AID`), ADD KEY `LID` (`LID`);
 
 --
 -- Indexen voor tabel `posts`
