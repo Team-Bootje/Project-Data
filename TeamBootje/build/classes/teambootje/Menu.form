@@ -70,6 +70,11 @@
                   <Component id="Empty" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
               </Group>
           </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="270" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -84,7 +89,9 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="GFD" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="GB" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="WS" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -111,7 +118,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="GTD">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Get Twitter data"/>
+        <Property name="text" type="java.lang.String" value="Get Twitter Data"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GTDActionPerformed"/>
@@ -159,7 +166,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="PP">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Positive post"/>
+        <Property name="text" type="java.lang.String" value="Positieve post"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PPActionPerformed"/>
@@ -215,11 +222,16 @@
     </Component>
     <Component class="javax.swing.JButton" name="BD">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Bekijk data"/>
+        <Property name="text" type="java.lang.String" value="Bekijk Data"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BDActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Uit te voeren analyses:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
