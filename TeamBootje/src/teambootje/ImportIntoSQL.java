@@ -21,8 +21,8 @@ public class ImportIntoSQL {
         Date date = TwitterAPI.getDate();
 
         // Check of locatie al bestaat, indien niet, insert locatie
-        String select_lid_from_locatie_where_land___and_ = "select lid from locatie where land = ? and stad = ?";
-        PreparedStatement locatiePrep = conn.prepareStatement(select_lid_from_locatie_where_land___and_);
+        String selectLid = "select lid from locatie where land = ? and stad = ?";
+        PreparedStatement locatiePrep = conn.prepareStatement(selectLid);
         locatiePrep.setString(1, locationCountry);
         locatiePrep.setString(2, locationCity);
         Integer locatieId = getIdOrNull(locatiePrep);
