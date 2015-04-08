@@ -303,8 +303,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`UID`, `Username`, `Password`, `Name`) VALUES
-(1, 'Kevin', 'Manuela160', 'Kevin Verweij'),
-(2, 'User', 'User', 'User');
+(1, 'User', 'User', 'User');
 
 --
 -- Indexen voor geëxporteerde tabellen
