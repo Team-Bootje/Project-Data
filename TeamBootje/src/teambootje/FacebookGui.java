@@ -40,7 +40,8 @@ public class FacebookGui extends javax.swing.JFrame {
         setTitle("SS Rotterdam Analyse || Get Facebook Data");
         ImageIcon icon = new ImageIcon("img/bootje.jpg");
         setIconImage(icon.getImage());
-
+        
+        // Configuratie van Facebook, de Tokens om te kunnen ophalen.
         ConfigurationBuilder configurationBuilder = new ConfigurationBuilder(); 
         configurationBuilder.setDebugEnabled(true); 
         configurationBuilder.setOAuthAppId("476059649213785"); 
@@ -52,9 +53,8 @@ public class FacebookGui extends javax.swing.JFrame {
         Configuration configuration = configurationBuilder.build();
         FacebookFactory ff = new FacebookFactory(configuration);
         Facebook Facebook = ff.getInstance();
-       // String results = getFacebookPostes(Facebook, searchPost);
         
-        
+        // Nieuwe Facebook instance.
         FacebookAPI fbookAPI = new FacebookAPI();
 
         //Back btn
@@ -70,13 +70,14 @@ public class FacebookGui extends javax.swing.JFrame {
             }
         });
         
-        //JPanel en label
+        //JPanel
         JPanel fb = new JPanel();
         add(fb, BorderLayout.CENTER);
         
+        // Hiernaar zoekt de API.
         String search = "SSRotterdam";
  
-       
+        //Een TextArea die in het Panel gaat. Hierin worden de posts weergegeven.
         JTextArea fbapi = new JTextArea(FacebookAPI.getFacebookPosts(Facebook, search));
         fb.add(fbapi);
         fbapi.setSize(500, 500);
@@ -84,6 +85,7 @@ public class FacebookGui extends javax.swing.JFrame {
         fbapi.setWrapStyleWord(true);
         fbapi.setEditable(false);
         
+        //Een scrollfunctie
         JScrollPane sp = new JScrollPane(fbapi);
         add(sp);
     }

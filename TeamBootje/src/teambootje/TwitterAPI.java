@@ -27,14 +27,15 @@ public class TwitterAPI {
     static String post;
     static Date date;
 
+    // Deze method haalt de tweets op, gebaseerd op de onderstaand instellingen.
     public static void timeline() throws TwitterException, SQLException {
         Twitter twitter = TwitterFactory.getSingleton();
+
+        //Hiernaar zoekt de API.
         Query query = new Query("ssrotterdam");
         query.setCount(100);
-        /**
-         ** setSince kan alleen tot 7 dagen terug worden gebruikt***
-         */
 
+        //For-loop om alle tweets op te halen en te printen.
         QueryResult result = twitter.search(query);
         for (Status status : result.getTweets()) {
             if (status.getPlace() != null) {
@@ -44,7 +45,7 @@ public class TwitterAPI {
                 countryVar = null;
                 cityVar = null;
             }
-            
+
             java.util.Date utilDate = status.getCreatedAt();
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
@@ -59,6 +60,7 @@ public class TwitterAPI {
         }
     }
 
+    //Method om verbinding te maken met de database.
     public static Connection getConn() {
         Connection conn = null;
         try {
@@ -72,10 +74,12 @@ public class TwitterAPI {
         return conn;
     }
 
+    //Deze methode laat het resultaat zien in TwitterGui().
     public static String getTweets() {
-    return screenName + post + date + cityVar + countryVar ;
+        return screenName + post + date + cityVar + countryVar;
     }
-    
+
+    //Getters voor de database.
     public static String getCityVar() {
         return cityVar;
     }

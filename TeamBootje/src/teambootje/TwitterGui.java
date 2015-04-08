@@ -51,26 +51,24 @@ public class TwitterGui extends javax.swing.JFrame {
             }
         });
          
-       // panel en Label
+       // Panel
        JPanel twit = new JPanel();
        add(twit, BorderLayout.CENTER);
        
+       //Nieuwe Twitter instance.
        TwitterAPI tapi = new TwitterAPI();
        
-      
+       //TextArea waarin de tweets worden weergegeven.
        JTextArea twapi = new JTextArea(TwitterAPI.getTweets());
        twit.add(twapi);
        twapi.setSize(500, 500);
        twapi.setLineWrap(true);
        twapi.setWrapStyleWord(true);
        twapi.setEditable(false);
-       
-       // twit.add(twapi);
-       
+      
+       //Functie om scrollbar aan te maken in het Panel.
        JScrollPane sp = new JScrollPane(twapi);
        add(sp);
-       
-       
     }
 
     /**
