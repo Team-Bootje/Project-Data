@@ -171,7 +171,6 @@ public class Login extends javax.swing.JFrame {
             rs = pst.executeQuery();
             
             if(rs.next()){
-            //    JOptionPane.showMessageDialog(null, "Gebruikersnaam en wachtwoord zijn correct!");
                 
                 java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
