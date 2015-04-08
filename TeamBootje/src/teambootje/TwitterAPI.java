@@ -21,14 +21,11 @@ public class TwitterAPI {
     static final String PASS = "";
 
     //variabelen
-    static Status status;
-    static String cityVar = status.getPlace().getName();
-    static String countryVar = status.getPlace().getCountry();
-    static String screenName = status.getUser().getScreenName();
-    static String post = status.getText();
-    java.util.Date utilDate = status.getCreatedAt();
-    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-    Date date = sqlDate;
+    static String cityVar;
+    static String countryVar;
+    static String screenName;
+    static String post;
+    static Date date;
 
     public static void timeline() throws TwitterException, SQLException {
         Twitter twitter = TwitterFactory.getSingleton();
