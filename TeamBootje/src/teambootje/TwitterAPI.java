@@ -74,6 +74,10 @@ public class TwitterAPI {
         return conn;
     }
 
+    public static String getTweets() {
+    return screenName + post + date + cityVar + countryVar ;
+    }
+    
     public static String getCityVar() {
         return cityVar;
     }

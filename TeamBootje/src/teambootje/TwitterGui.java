@@ -5,7 +5,7 @@
  */
 package teambootje;
 
-import facebook4j.conf.*;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -58,7 +58,7 @@ public class TwitterGui extends javax.swing.JFrame {
        TwitterAPI tapi = new TwitterAPI();
        
       
-       JTextArea twapi = new JTextArea(TwitterAPI.timeline());
+       JTextArea twapi = new JTextArea(TwitterAPI.getTweets());
        twit.add(twapi);
        twapi.setSize(500, 500);
        twapi.setLineWrap(true);
