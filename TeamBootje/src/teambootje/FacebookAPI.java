@@ -32,6 +32,7 @@ public class FacebookAPI {
 
     public static void main(String[] args) throws FacebookException {
 
+        // Configuratie voor de applicatie om te kunnen runnen.
         ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
         configurationBuilder.setDebugEnabled(true);
         configurationBuilder.setOAuthAppId("476059649213785");
@@ -40,15 +41,16 @@ public class FacebookAPI {
         configurationBuilder.setOAuthPermissions("email, publish_stream, id, name, first_name, last_name, read_stream , generic, user_birthday,user_location,user_hometown");
         configurationBuilder.setUseSSL(true);
         configurationBuilder.setJSONStoreEnabled(true);
-// Create configuration and get Facebook instance 
+        
+        // Aanmaken van configuratie, het zoekwoord instellen en maken van Facebook instance 
         Configuration configuration = configurationBuilder.build();
         FacebookFactory ff = new FacebookFactory(configuration);
         Facebook Facebook = ff.getInstance();
         String searchPost = "ssRotterdam";
         String results = getFacebookPosts(Facebook, searchPost);
-
     }
 
+    //Deze  methode haalt de Facebook posts op met het zoekwoord hierboven.
     public static String getFacebookPosts(Facebook Facebook, String searchPost) throws FacebookException {
         String searchResult = "\n";
         StringBuilder searchMessage = new StringBuilder();
@@ -88,6 +90,7 @@ public class FacebookAPI {
         return searchResult;
     }
 
+    //Deze  methode haalt de Facebook feed op met het zoekwoord hierboven.
     public static String getFacebookFeed(Facebook Facebook, String searchPost) throws FacebookException {
         String searchResult = "";
         StringBuilder searchMessage = new StringBuilder();
@@ -102,8 +105,9 @@ public class FacebookAPI {
         searchResult = searchResult + searchMessage.toString();
         return searchResult;
     }
-
-    public static String getCountryVar() {
+    
+    // Getters voor de database.
+   public static String getCountryVar() {
         return locationCountry;
     }
 
