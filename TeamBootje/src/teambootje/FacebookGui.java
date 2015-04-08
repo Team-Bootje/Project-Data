@@ -77,7 +77,7 @@ public class FacebookGui extends javax.swing.JFrame {
         String search = "SSRotterdam";
  
        
-        JTextArea fbapi = new JTextArea(FacebookAPI.getFacebookPostes(Facebook, search));
+        JTextArea fbapi = new JTextArea(FacebookAPI.getFacebookPosts(Facebook, search));
         fb.add(fbapi);
         fbapi.setSize(500, 500);
         fbapi.setLineWrap(true);

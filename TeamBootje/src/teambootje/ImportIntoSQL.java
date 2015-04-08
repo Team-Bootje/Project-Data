@@ -68,6 +68,62 @@ public class ImportIntoSQL {
         postStmnt.execute();
     }
 
+    public static void FacebookImport() throws SQLException {
+        Connection conn = getConn();
+        String locationCountry = FacebookAPI.getCountryVar();
+        String locationCity = FacebookAPI.getCityVar();
+        String screenName = FacebookAPI.getScreenName();
+        String post = FacebookAPI.getPost();
+        Date date = FacebookAPI.getDate();
+
+        // Check of locatie al bestaat, indien niet, insert locatie
+        String selectLid = "select lid from locatie where land = ? and stad = ?";
+        PreparedStatement locatiePrep = conn.prepareStatement(selectLid);
+        locatiePrep.setString(1, locationCountry);
+        locatiePrep.setString(2, locationCity);
+        Integer locatieId = getIdOrNull(locatiePrep);
+        if (locatieId == null) {
+            // doe een insert
+            if (locationCountry != null && !locationCountry.isEmpty()) {
+                PreparedStatement locatieStmnt = conn.prepareStatement("INSERT INTO locatie(Land, Stad) VALUES(?, ?);");
+
+                String tweedeColom = locationCity != null && !locationCity.isEmpty()
+                        ? locationCity
+                        : null;
+
+                locatieStmnt.setString(2, locationCity);
+
+                locatieStmnt.setString(1, locationCountry);
+                locatieStmnt.execute();
+            }
+
+            locatieId = getIdOrNull(locatiePrep);
+        }
+
+        // Check of persoon al bestaat, indien niet, insert persoon
+        String persoonSelect = "select aid from persoon where name = ?";
+        PreparedStatement persoonPrep = conn.prepareStatement(persoonSelect);
+        persoonPrep.setString(1, screenName);
+        Integer persoonId = getIdOrNull(persoonPrep);
+        if (persoonId == null) {
+            // doe een insert
+            PreparedStatement locatieStmnt = conn.prepareStatement("INSERT INTO persoon(name, lid) VALUES(?, ?);");
+            locatieStmnt.setString(1, screenName);
+            locatieStmnt.setObject(2, locatieId);
+            locatieStmnt.execute();
+
+            persoonId = getIdOrNull(persoonPrep);
+        }
+
+        // POSTS
+        PreparedStatement postStmnt = conn.prepareStatement("INSERT INTO posts(AID, Post, Datum) VALUES(?, ?, ?);");
+
+        postStmnt.setInt(1, persoonId);
+        postStmnt.setString(2, post);
+        postStmnt.setDate(3, date);
+        postStmnt.execute();
+    }
+
     private static Integer getIdOrNull(PreparedStatement locatiePrep) throws SQLException {
         ResultSet locatieResultSet = locatiePrep.executeQuery();
         if (locatieResultSet.next()) {

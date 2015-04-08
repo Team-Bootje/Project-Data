@@ -37,8 +37,6 @@ public class TwitterAPI {
 
         QueryResult result = twitter.search(query);
         for (Status status : result.getTweets()) {
-            String locationCity = null;
-            String locationCountry = null;
             if (status.getPlace() != null) {
                 cityVar = status.getPlace().getName();
                 countryVar = status.getPlace().getCountry();

@@ -158,7 +158,7 @@ public class Login extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        conn = MySQLConnect.ConectDb();
+        conn = MySQLConnect.ConnectDb();
     }//GEN-LAST:event_formWindowOpened
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed

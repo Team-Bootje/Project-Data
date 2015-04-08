@@ -17,7 +17,7 @@ public class MySQLConnect {
     private static final Logger LOG = Logger.getLogger(MySQLConnect.class.getName());
     Connection conn = null;
     
-    public static Connection ConectDb(){
+    public static Connection ConnectDb(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/teambootje", "root", "");
