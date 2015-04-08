@@ -108,10 +108,10 @@ public class A3 extends javax.swing.JFrame {
                pieDataset.setValue("Bergen op Zoom", new Integer(5));
                pieDataset.setValue("Niet Vrijgegeven", new Integer(26));
                
-               JFreeChart chart = ChartFactory.createPieChart3D("Aantal mannen en vrouwen", pieDataset, true, true, true);
+               JFreeChart chart = ChartFactory.createPieChart3D("Aantal Posts per locatie", pieDataset, true, true, true);
                PiePlot3D p = (PiePlot3D) chart.getPlot();
                //p.setForegroundAlpha(TOP_ALIGNMENT);
-               ChartFrame pie = new ChartFrame("Aantal mannen en vrouwen", chart);
+               ChartFrame pie = new ChartFrame("Aantal Posts per locatie", chart);
                pie.setVisible(true);
                pie.setSize(500,500);
                pie.setLocationRelativeTo(null);

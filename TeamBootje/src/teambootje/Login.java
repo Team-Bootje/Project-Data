@@ -179,7 +179,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
             } else{
-            //    JOptionPane.showMessageDialog(null, "Gebruikersnaam en wachtwoord zijn incorrect!");
+                JOptionPane.showMessageDialog(null, "Gebruikersnaam en wachtwoord zijn incorrect!");
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
