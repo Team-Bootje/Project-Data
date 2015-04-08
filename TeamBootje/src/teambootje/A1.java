@@ -60,11 +60,13 @@ public class A1 extends javax.swing.JFrame {
        add(ana, BorderLayout.CENTER);
        
        //tabel
-       String sql = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon GROUP BY geslacht";
+       String nvt = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon GROUP BY geslacht";
+       String male   = "SELECT Geslacht AS male, COUNT(*) AS Aantal_Male FROM persoon WHERE Geslacht = 'man'";
+       String Female = "SELECT Geslacht AS female, COUNT(*) AS Aantal_Female FROM persoon WHERE Geslacht = 'vrouw'";
        List<Object[]> list = new ArrayList<Object[]>();
        ResultSet rs = null;
        try {
-            rs = db.runSql(sql);
+            rs = db.runSql(nvt);
            while (rs.next()) {
                String geslacht = rs.getString("Geslacht");
                int aantal = rs.getInt("Aantal");
@@ -73,7 +75,26 @@ public class A1 extends javax.swing.JFrame {
                    row[i-1] = rs.getString(i);
                }
                list.add(row);
+                
+               try{
+               rs = db.runSql(male);
+               while (rs.next()) {
+               String man = rs.getString("male");
+               int am = rs.getInt("Aantal_Male");
+               String[] row1 = new String[rs.getMetaData().getColumnCount()];
+               for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+               row1[i-1] = rs.getString(i);
+               }
                
+               try{
+                 rs = db.runSql(Female);
+                 while (rs.next()) {
+               String vrouw = rs.getString("female");
+               int af = rs.getInt("Aantal_Female");
+               String[] row2 = new String[rs.getMetaData().getColumnCount()];
+               for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+               row2[i-1] = rs.getString(i);
+               }
                Object[][] array = new Object[list.size()][];
        Object columnNames[] = {"Geslacht", "Aantal"};
        list.toArray(array);
@@ -92,20 +113,23 @@ public class A1 extends javax.swing.JFrame {
        chart.addActionListener(new ActionListener()
         {
             String g1 = geslacht;
+            String m = man;
+            String v = vrouw;
             int a1 = aantal;
+            int a2 = am;
+            int a3 = af;
             @Override
             public void actionPerformed(ActionEvent e) {
                 
                
                 
-               //String male   = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'man' GROUP BY geslacht";
-               //String Female = "SELECT Geslacht, COUNT(*) AS Aantal FROM persoon WHERE Geslacht = 'vrouw' GROUP BY geslacht";
+               
                 
                DefaultPieDataset pieDataset = new DefaultPieDataset();
                pieDataset.setValue("Niet vrij gegeven", a1);
-               /*pieDataset.setValue("Man", new Integer(0));
-                 pieDataset.setValue("vrouw", new Integer(0));
-               */
+               pieDataset.setValue("Man", a2);
+               pieDataset.setValue("vrouw", a3);
+               
                JFreeChart chart = ChartFactory.createPieChart3D("Aantal mannen en vrouwen", pieDataset, true, true, true);
                PiePlot3D p = (PiePlot3D) chart.getPlot();
                //p.setForegroundAlpha(TOP_ALIGNMENT);
@@ -118,6 +142,16 @@ public class A1 extends javax.swing.JFrame {
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
+               }
+               } catch(SQLException v){
+                      JOptionPane.showMessageDialog(null, v); 
+                       }
+               }
+               }catch(SQLException m){
+               JOptionPane.showMessageDialog(null, m);
+               }
+               
+               
            }
        }catch (SQLException e){
            JOptionPane.showMessageDialog(null, e);
