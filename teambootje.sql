@@ -42,14 +42,13 @@ CREATE TABLE IF NOT EXISTS `locatie` (
 `LID` int(11) NOT NULL,
   `Land` varchar(255) NOT NULL,
   `Stad` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=916 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `locatie`
 --
 
 INSERT INTO `locatie` (`LID`, `Land`, `Stad`) VALUES
-(881, 'N/A', 'N/A'),
 (888, 'Nederland', 'Bergen op Zoom'),
 (902, 'Nederland', 'Rotterdam'),
 (915, 'Nederland', 'Veenendaal');
@@ -66,14 +65,14 @@ CREATE TABLE IF NOT EXISTS `persoon` (
   `Leeftijd` int(3) DEFAULT NULL,
   `Geslacht` varchar(5) DEFAULT NULL,
   `LID` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `persoon`
 --
 
 INSERT INTO `persoon` (`AID`, `Name`, `Leeftijd`, `Geslacht`, `LID`) VALUES
-(5, 'Katendrechtnr1', NULL, NULL, 881),
+(5, 'Katendrechtnr1', NULL, NULL, NULL),
 (6, 'RuudvandenBos', NULL, NULL, 888),
 (7, 'EdwindeKoning1', NULL, NULL, 902),
 (8, 'Gerarddegraaff', NULL, NULL, 915),
@@ -138,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `AID` int(11) NOT NULL,
   `Post` varchar(255) NOT NULL,
   `Datum` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `Users`
 (
